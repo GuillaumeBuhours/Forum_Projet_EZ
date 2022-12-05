@@ -38,12 +38,40 @@
     text-align: center;
     vertical-align: middle;
 }
-/* #conteneur{
-
+#conteneur{
+    margin: 2% 10%;
+    width: 80%;
+    height: auto;
+    border: 2px solid red;
+    border-radius: 2em 2em 0 0 ;
+    text-align: center;
+    font-weight: bold;
+    background-color: black;
+    color: white;
 }
 #index{
-
+    border: 2px solid white;
 }
-.ligne{
-
-} */
+#colone1{
+    border: 2px solid white;
+    border-radius: 1.8em 0 0 0;
+    width: 40px;
+    padding: 10px;
+}
+#colone2{
+    border: 2px solid white;
+    width: 600px;
+}
+#colone3{
+    border: 2px solid white;
+    width: 100px;
+}
+#colone4{
+    border: 2px solid white;
+    width: 100px;
+}
+#colone5{
+    border: 2px solid white;
+    border-radius: 0 1.8em 0 0;
+    width: 100px;
+}

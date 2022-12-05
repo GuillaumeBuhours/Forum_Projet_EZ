@@ -41,11 +41,11 @@
     <br>
     <table id="conteneur">
         <tr id="index">
-            <th class="ligne">Icone</th>
-            <th class="ligne">Nom du Topic</th>
-            <th class="ligne">Créateur</th>
-            <th class="ligne">Nombre de Msg</th>
-            <th class="ligne">Nombre de vues</th>
+            <td id="colone1">Icone</td>
+            <td id="colone2">Nom du Topic</td>
+            <td id="colone3">Créateur</td>
+            <td id="colone4">Nombre de Msg</td>
+            <td id="colone5">Nombre de vues</td>
         </tr>
     </table>
     <script src="assets/index.js"></script>
