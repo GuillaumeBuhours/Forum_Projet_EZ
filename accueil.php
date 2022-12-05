@@ -11,26 +11,34 @@
 </head>
 <body>
     <header id="head">
-        <div id="banniere">
             <button id="inscription">inscription</button>
             <button id="connection">Connection</button>
             <button id="deconnection">Deconnection</button>
             <button id="profil">Profil</button>
-        </div>
         <h1 id="titre">LE FORUM DES GEEKEZ</h1>
     </header>
     <br><hr>
+    <!-- Modal de connection -->
+    <div class="modal" id="modal1">
+    <form method="" action="" id="connect"> 
+        <input type="text" placeholder="Pseudo" name="name1">
+        <input type="text" placeholder="mot de passe" name="mdp1">
+        <button onclick="">Se Connecter</button><button onclick="">Annuler</button>
+    </form>
+    </div>
+
+    <!-- Modal d'inscription -->
+    <div class="modal" id="modal2">
     <form method="" action="" id="inscrire">
         <input type="text" placeholder="E-Mail" name="mail">
         <input type="text" placeholder="Pseudo" name="pseudo">
         <input type="text" placeholder="mot de passe" name="mdp">
-        <button>S'inscrire</button>
+        <button onclick="">S'inscrire</button><button onclick="">Annuler</button>
     </form>
-    <form method="" action="" id="connect"> 
-        <input type="text" placeholder="Pseudo" name="name1">
-        <input type="text" placeholder="mot de passe" name="mdp1">
-        <button>Se Connecter</button>
-    </form>
+    </div>
+
+
+    <br>
     <table id="conteneur">
         <tr id="index">
             <th class="ligne">Icone</th>
@@ -40,6 +48,6 @@
             <th class="ligne">Nombre de vues</th>
         </tr>
     </table>
-    <script src="index.js"></script>
+    <script src="assets/index.js"></script>
 </body>
 </html>
