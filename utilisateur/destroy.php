@@ -27,11 +27,11 @@ try{
 	
 	$requete=$bdd->prepare('SELECT * FROM utilisateurs WHERE id=id') or die (print_r($bdd->errorInfo()));
 	
-	$requete->execute(array($_POST['suppr_compte']));
+	$requete->execute(array($_POST['btnDeleteAccount']));
 
 	while ($data=$requete->fetch())
 	{
-		$id=$data['suppr_compte'];
+		$id=$data['btnDeleteAccount'];
 	}
 	if ($id=="")
 	{	
@@ -44,7 +44,7 @@ try{
 		$requete=$bdd->prepare('DELETE FROM utilisateurs WHERE id=:id') or die (print_r($bdd->errorInfo()));
 
 		$requete->execute(array(
-		'id' => $_POST['suppr_compte'],
+		'id' => $_POST['btnDeleteAccount'],
 		));
 	
 		echo 'Les informations concernant le nouveau membre ont bien �t� supprim�es de la base.';
