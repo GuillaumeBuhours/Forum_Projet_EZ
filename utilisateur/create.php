@@ -36,10 +36,10 @@ if ( !$erreur ) {
     $requete->bindParam( ':mdp', $_POST[ 'mdp' ] );
     if ( $requete->execute() ) {
         $retour .= "L'utilisateur a été ajouté avec succès.<br />";
-        header("refresh:5;url=../accueil.php");
+        header("refresh:1;url=../accueil.php");
     } else {
         $retour .= "Un erreur est apparue lors de l'ajout de l'utilisateur.<br />";
-        header("refresh:5;url=../accueil.php");
+        header("refresh:1;url=../accueil.php");
     }
     $requete->closeCursor();
 }

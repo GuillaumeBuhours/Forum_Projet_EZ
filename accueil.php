@@ -83,12 +83,8 @@ if (isset($_POST) && isset($_POST['pseudo1']) && isset($_POST['mdp1'])) {
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeProfil()">X</span></div>
     <h2 style="text-align:center">-- Page du profil --</h2>
     <form action="utilisateur/destroy.php" method="post">
-    <div class="icon" style="display:flex;">
-    <div class="tdIcons"><img src="./assets/edit.png" alt="edit" onclick=""></div><h4>Pseudo:</h4>
-    </div>
-    <div class="icon">
-    <div class="tdIcons"><img src="./assets/edit.png" alt="edit" onclick=""></div><h4>Mot de Passe:</h4>
-    </div>
+    <h4>Pseudo: <?php echo $_SESSION['loginPostForm'] ?></h4>
+    <h4>Mot de Passe: <?php echo $_SESSION['passwordPostForm'] ?></h4>
     <h4>Rang:</h4>
     <h4>Nombre de message posté:</h4>
     <div style="text-align:center;"><input name="btnDeleteAccount" type="submit" value="Supprimer son Compte" class="pseudoBtn"></div>
