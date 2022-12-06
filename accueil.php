@@ -29,7 +29,7 @@ require_once "./forum/forum.php";
     <h2>-- Formulaire d'Inscription --</h2>
     <form class="form" action="" method="post">
     <input class="pseudoTxtarea" type="text" placeholder="E-Mail" name="mail">
-    <input class="pseudoTxtarea" type="text" placeholder="Pseudo" name="name">
+    <input class="pseudoTxtarea" type="text" placeholder="Pseudo" name="pseudo">
     <input class="pseudoTxtarea" type="text" placeholder="mot de passe" name="mdp">
     <div style="text-align:center;"><input type="submit" value="S'Inscrire" class="pseudoBtn"></div>
     </form>
@@ -39,7 +39,7 @@ require_once "./forum/forum.php";
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeConnect()">X</span></div>
     <h2>-- Formulaire de Connection --</h2>
     <form class="form" action="" method="post">
-    <input class="pseudoTxtarea" type="text" placeholder="Pseudo" name="name1">
+    <input class="pseudoTxtarea" type="text" placeholder="Pseudo" name="pseudo1">
     <input class="pseudoTxtarea" type="text" placeholder="mot de passe" name="mdp1">
     <div style="text-align:center;"><input type="submit" value="Se Connecter" class="pseudoBtn"></div>
     </form>
