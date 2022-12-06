@@ -82,7 +82,7 @@ if (isset($_POST) && isset($_POST['pseudo1']) && isset($_POST['mdp1'])) {
     <div class="modal" id="modal3">
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeProfil()">X</span></div>
     <h2 style="text-align:center">-- Page du profil --</h2>
-    <form action="" method="post">
+    <form action="./utilisateur/destroy.php" method="post">
     <div class="icon" style="display:flex;">
     <div class="tdIcons"><img src="./assets/edit.png" alt="edit" onclick=""></div><h4>Pseudo:</h4>
     </div>
