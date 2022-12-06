@@ -27,7 +27,7 @@ require_once "./forum/forum.php";
     <div class="modal" id="modal1">
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeInscription()">X</span></div>
     <h2>-- Formulaire d'Inscription --</h2>
-    <form class="form" action="" method="post">
+    <form class="form" action="utilisateur/create.php" method="post">
     <input class="pseudoTxtarea" type="text" placeholder="E-Mail" name="mail">
     <input class="pseudoTxtarea" type="text" placeholder="Pseudo" name="pseudo">
     <input class="pseudoTxtarea" type="text" placeholder="mot de passe" name="mdp">
