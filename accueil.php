@@ -64,7 +64,7 @@ require_once "./forum/forum.php";
     </div>
     <h4>Rang:</h4>
     <h4>Nombre de message posté:</h4>
-    <div style="text-align:center;"><input type="submit" value="Supprimer son Compte" class="pseudoBtn"></div>
+    <div style="text-align:center;"><input name="btnDeleteAccount" type="submit" value="Supprimer son Compte" class="pseudoBtn"></div>
     </form>
     </div>
     
