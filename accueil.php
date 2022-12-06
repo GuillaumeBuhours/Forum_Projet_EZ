@@ -26,7 +26,7 @@ require_once "./forum/forum.php";
     <!-- Modal d'inscription -->
     <div class="modal" id="modal1">
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeInscription()">X</span></div>
-    <h2>-- Formulaire d'Inscription --</h2>
+    <h2 style="text-align:center">-- Formulaire d'Inscription --</h2>
     <form class="form" action="" method="post">
     <input class="pseudoTxtarea" type="text" placeholder="E-Mail" name="mail">
     <input class="pseudoTxtarea" type="text" placeholder="Pseudo" name="pseudo">
@@ -37,7 +37,7 @@ require_once "./forum/forum.php";
     <!-- Modal de connection -->
     <div class="modal" id="modal2">
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeConnect()">X</span></div>
-    <h2>-- Formulaire de Connection --</h2>
+    <h2 style="text-align:center">-- Formulaire de Connection --</h2>
     <form class="form" action="" method="post">
     <input class="pseudoTxtarea" type="text" placeholder="Pseudo" name="pseudo1">
     <input class="pseudoTxtarea" type="text" placeholder="mot de passe" name="mdp1">
@@ -47,10 +47,18 @@ require_once "./forum/forum.php";
     <!-- Modal du Profil -->
     <div class="modal" id="modal3">
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeProfil()">X</span></div>
-    <h2>-- Page du profil --</h2>
-    <h4>Pseudo:</h4>
+    <h2 style="text-align:center">-- Page du profil --</h2>
+    <form action="" method="post">
+    <div class="icon">
+    <h4>Pseudo:</h4> <div class="tdIcons"><img src="./assets/edit.png" alt="edit" onclick=""></div>
+    </div>
+    <div class="icon">
+    <h4>Mot de Passe:</h4><div class="tdIcons"><img src="./assets/edit.png" alt="edit" onclick=""></div>
+    </div>
     <h4>Rang:</h4>
     <h4>Nombre de message posté:</h4>
+    <div style="text-align:center;"><input type="submit" value="Supprimer son Compte" class="pseudoBtn"></div>
+    </form>
     </div>
     <br>
     <table id="conteneur">
