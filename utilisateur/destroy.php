@@ -52,4 +52,5 @@ try{
 	}
 
 	$requete->closeCursor();
+echo "glouglou2";
 	?>	
