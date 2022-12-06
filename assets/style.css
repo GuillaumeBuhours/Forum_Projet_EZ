@@ -98,11 +98,12 @@
     background-color:rgba(0,0,0,0.9);
 }
 
-.modal *{
-    margin:auto;
+.modal{
+    margin:0;
 }
 
 .pseudoTxtarea{
+    margin-left: 35%;
     height:20px;
     overflow:auto;
     max-width:100%;
@@ -119,6 +120,26 @@
 .form{
     gap: 10px;
     width: 100%;
-    display: flex;
+    display: flex ;
     flex-direction: column;
+}
+.tdIcons img{
+    padding-left:.5rem;
+}
+.tdIcons img:hover{
+    cursor:pointer;
+}
+.edit{
+    gap:5px;
+    width: 400px;
+    height: 40px;
+}
+h4{
+    margin: 0 10%;
+    font-size: 20px;
+    height: 40px;
+    border: 2px solid white;
+}
+.icon{
+    display: flex;
 }

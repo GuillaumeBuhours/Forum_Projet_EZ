@@ -1,0 +1,29 @@
+-> Créer une base de donnée :
+	- une table :
+		-> ID ; Mail ; Pseudo ; MDP ; admin; topic ; message ; datetime.
+
+
+-> Page d'accueil : ( si pas connecté )
+	- Un bouton connection & inscription;
+	- Visibilité des topics & message;
+
+
+-> Page d'accueil : (si connecté )
+	- Un bouton Profil;
+	- un bouton déconnecté;
+	- visibilité des topics & message;
+	- possibilité de créer des topics;
+	- possibilité de mettre des commentaires;
+
+
+-> Modal : 
+	- Modal pour voir le profil de l'utilisateur;
+	- Modal pour s'inscrire;
+	- Modal pour se connecter;
+
+-> Topic & Message : 
+	- CREATE;
+	- READ;
+	- UPDATE;
+	- DELETE;
+
