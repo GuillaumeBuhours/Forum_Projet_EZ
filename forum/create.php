@@ -51,10 +51,10 @@ if ( !$erreur ) {
     $requete = $bdd->prepare( $sql );
     $requete->bindParam( ':topic',  $_POST[ 'topic' ] );
     if ( $requete->execute() ) {
-        $retour .= "L'utilisateur a été ajouté avec succès.<br />";
+        $retour .= "Le topic a été ajouté avec succès.<br />";
         header("refresh:5;url=../accueil.php");
     } else {
-        $retour .= "Un erreur est apparue lors de l'ajout de l'utilisateur.<br />";
+        $retour .= "Un erreur est apparue lors de l'ajout du topic.<br />";
         header("refresh:5;url=../accueil.php");
     }
     $requete->closeCursor();
