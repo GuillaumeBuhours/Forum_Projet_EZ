@@ -56,11 +56,11 @@ require_once "./forum/forum.php";
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeProfil()">X</span></div>
     <h2 style="text-align:center">-- Page du profil --</h2>
     <form action="" method="post">
-    <div class="icon">
-    <h4>Pseudo:</h4><div class="tdIcons"><img src="./assets/edit.png" alt="edit" onclick=""></div>
+    <div class="icon" style="display:flex;">
+    <div class="tdIcons"><img src="./assets/edit.png" alt="edit" onclick=""></div><h4>Pseudo:</h4>
     </div>
     <div class="icon">
-    <h4>Mot de Passe:</h4><div class="tdIcons"><img src="./assets/edit.png" alt="edit" onclick=""></div>
+    <div class="tdIcons"><img src="./assets/edit.png" alt="edit" onclick=""></div><h4>Mot de Passe:</h4>
     </div>
     <h4>Rang:</h4>
     <h4>Nombre de message posté:</h4>
