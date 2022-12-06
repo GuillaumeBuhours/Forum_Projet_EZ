@@ -135,11 +135,11 @@
     height: 40px;
 }
 h4{
-    margin: 0 10%;
+    margin: 0 20%;
     font-size: 20px;
     height: 40px;
     border: 2px solid white;
 }
 .icon{
-    display: flex;
+    justify-content: space-between;
 }

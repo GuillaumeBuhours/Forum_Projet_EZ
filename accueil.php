@@ -1,10 +1,7 @@
 <?php
-
 session_start();
 require_once "./forum/forum.php";
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +13,8 @@ require_once "./forum/forum.php";
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+
+<!-- Bouton du header permettant l'inscription, la connection, la déconnection & la consultation du profil -->
     <header id="head">
         <?php if(isDisconnect()) { ?>
             <button id="inscription" onclick="openInscription()">inscription</button>
@@ -26,10 +25,10 @@ require_once "./forum/forum.php";
         <?php } ?>
         <h1 id="titre">LE FORUM DES GEEKEZ</h1>
     </header>
+    
     <br><hr>
-
-    <!-- Modal d'inscription -->
-
+    
+<!-- Modal d'inscription -->
     <div class="modal" id="modal1">
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeInscription()">X</span></div>
     <h2 style="text-align:center">-- Formulaire d'Inscription --</h2>
@@ -40,9 +39,8 @@ require_once "./forum/forum.php";
     <div style="text-align:center;"><input type="submit" value="S'Inscrire" class="pseudoBtn"></div>
     </form>
     </div>
-
-    <!-- Modal de connection -->
-
+    
+<!-- Modal de connection -->
     <div class="modal" id="modal2">
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeConnect()">X</span></div>
     <h2 style="text-align:center">-- Formulaire de Connection --</h2>
@@ -52,25 +50,27 @@ require_once "./forum/forum.php";
     <div style="text-align:center;"><input type="submit" value="Se Connecter" class="pseudoBtn"></div>
     </form>
     </div>
-
-    <!-- Modal du Profil -->
     
+<!-- Modal du Profil -->
     <div class="modal" id="modal3">
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeProfil()">X</span></div>
     <h2 style="text-align:center">-- Page du profil --</h2>
     <form action="" method="post">
     <div class="icon">
-    <h4>Pseudo:</h4> <div class="tdIcons"><img src="./assets/edit.png" alt="edit" onclick=""></div>
+    <h4>Pseudo:</h4><div class="tdIcons"><img src="./assets/edit.png" alt="edit" onclick=""></div>
     </div>
     <div class="icon">
     <h4>Mot de Passe:</h4><div class="tdIcons"><img src="./assets/edit.png" alt="edit" onclick=""></div>
     </div>
     <h4>Rang:</h4>
     <h4>Nombre de message posté:</h4>
-    <div style="text-align:center;"><input type="submit" value="Supprimer son Compte" class="pseudoBtn" name="suppr_compte"></div>
+    <div style="text-align:center;"><input name="btnDeleteAccount" type="submit" value="Supprimer son Compte" class="pseudoBtn"></div>
     </form>
     </div>
+    
     <br>
+
+<!-- Table des topics & début du forum -->
     <table id="conteneur">
         <tr id="index">
             <td id="colone1">Icone</td>
@@ -80,6 +80,8 @@ require_once "./forum/forum.php";
             <td id="colone5">Nombre de vues</td>
         </tr>
     </table>
+
+<!-- Fontion pour les modals -->
     <script>
     function openInscription(){ document.getElementById("modal1").style.display="flex"; }
     function closeInscription(){ document.getElementById("modal1").style.display="none"; }
@@ -88,6 +90,7 @@ require_once "./forum/forum.php";
     function openProfil(){ document.getElementById("modal3").style.display="flex"; }
     function closeProfil(){ document.getElementById("modal3").style.display="none"; }
     </script>
+
     <script src="assets/index.js"></script>
 </body>
 </html>
