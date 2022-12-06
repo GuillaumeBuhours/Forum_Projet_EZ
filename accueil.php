@@ -9,11 +9,11 @@ function setConnected($loginPostForm, $passwordPostForm) {
     }
 }
 
-function isDisconnect() { 
-    if (!isset($_SESSION) && !isset($_SESSION['loginPostForm']) && !isset($_SESSION['passwordPostForm'])) {
-        return false;
-    }else {
+function isConnect() { 
+    if (isset($_SESSION) && isset($_SESSION['loginPostForm']) && isset($_SESSION['passwordPostForm'])) {
         return true;
+    }else {
+        return false;
     }
 }
 
@@ -43,12 +43,12 @@ if (isset($_POST) && isset($_POST['pseudo1']) && isset($_POST['mdp1'])) {
 
 <!-- Bouton du header permettant l'inscription, la connection, la déconnection & la consultation du profil -->
     <header id="head">
-        <?php if(isDisconnect()) { ?>
+        <?php if(isConnect()) { ?>
+            <a href="deco.php">Se Deconnecter</a>
+            <button id="profil" onclick="openProfil()">Profil</button>
+        <?php }else{ ?>
             <button id="inscription" onclick="openInscription()">inscription</button>
             <button id="connection" onclick="openConnect()">Connection</button>
-        <?php }else{ ?>
-            <button id="deconnection">Deconnection</button>
-            <button id="profil" onclick="openProfil()">Profil</button>
         <?php } ?>
         <h1 id="titre">LE FORUM DES GEEKEZ</h1>
     </header>
@@ -59,7 +59,7 @@ if (isset($_POST) && isset($_POST['pseudo1']) && isset($_POST['mdp1'])) {
     <div class="modal" id="modal1">
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeInscription()">X</span></div>
     <h2 style="text-align:center">-- Formulaire d'Inscription --</h2>
-    <form class="form" action="" method="post">
+    <form class="form" action="utilisateur/create.php" method="post">
     <input class="pseudoTxtarea" type="text" placeholder="E-Mail" name="mail">
     <input class="pseudoTxtarea" type="text" placeholder="Pseudo" name="pseudo">
     <input class="pseudoTxtarea" type="text" placeholder="mot de passe" name="mdp">
@@ -71,7 +71,7 @@ if (isset($_POST) && isset($_POST['pseudo1']) && isset($_POST['mdp1'])) {
     <div class="modal" id="modal2">
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeConnect()">X</span></div>
     <h2 style="text-align:center">-- Formulaire de Connection --</h2>
-    <form class="form" action="" method="post">
+    <form class="form" action="accueil.php" method="post">
     <input class="pseudoTxtarea" type="text" placeholder="Pseudo" name="pseudo1">
     <input class="pseudoTxtarea" type="text" placeholder="mot de passe" name="mdp1">
     <div style="text-align:center;"><input type="submit" value="Se Connecter" class="pseudoBtn"></div>

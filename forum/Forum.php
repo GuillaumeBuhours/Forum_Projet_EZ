@@ -89,13 +89,3 @@ class Forum
 
 }
 
-function isDisconnect() { 
-	//si une session est déclarer et non nul et si les variables de sessions login et mdp sont déclaré et non nul également
-	if (!isset($_SESSION) && !isset($_SESSION['loginPostForm']) && !isset($_SESSION['passwordPostForm'])) {
-		//on retourne vrai
-		return true;
-	}else {
-		//sinon on retourne faux
-		return false;
-	}
-}
