@@ -25,18 +25,18 @@ try{
 		die('<strong>Erreur détectée !!! </strong>' . $e->getMessage());
 	}
 	
-	$requete=$bdd->prepare('SELECT * FROM utilisateurs WHERE id=id') or die (print_r($bdd->errorInfo()));
+	$requete=$bdd->prepare('SELECT * FROM utilisateurs WHERE id=:id') or die (print_r($bdd->errorInfo()));
 	
-	$requete->execute(array($_POST['suppr_compte']));
+	$requete->execute(array($_POST['id_suppression']));
 
 	while ($data=$requete->fetch())
 	{
-		$id=$data['suppr_compte'];
+		$id=$data['id'];
 	}
 	if ($id=="")
 	{	
 	
-		echo 'Impossible de supprimer les donn�es. Le nom de ce membre n\'est pas enregistr� dans la base.';
+		echo 'Impossible de supprimer les données. Le nom de ce membre n\'est pas enregistré dans la base.';
 	}
 	else
 	{
@@ -44,13 +44,12 @@ try{
 		$requete=$bdd->prepare('DELETE FROM utilisateurs WHERE id=:id') or die (print_r($bdd->errorInfo()));
 
 		$requete->execute(array(
-		'id' => $_POST['suppr_compte'],
+		'id' => $_POST['id_suppression'],
 		));
 	
-		echo 'Les informations concernant le nouveau membre ont bien �t� supprim�es de la base.';
-    session_destroy();
+		echo 'Les informations concernant le nouveau membre ont bien été supprimées de la base.';
+    // session_destroy();
 	}
 
 	$requete->closeCursor();
-echo "glouglou2";
 	?>	
