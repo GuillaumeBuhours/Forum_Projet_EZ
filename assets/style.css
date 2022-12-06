@@ -75,3 +75,31 @@
     border-radius: 0 1.8em 0 0;
     width: 100px;
 }
+
+.modal{
+    display:none;
+    width:50vw;
+    height:50vh;
+    position:fixed;
+    top:25%;
+    left:25%;
+    flex-direction:column;
+    justify-content:space-around;
+    color:white;
+    background-color:rgba(0,0,0,0.9);
+}
+
+.modal *{
+    margin:auto;
+}
+
+.pseudoTxtarea{
+    height:30px;
+    overflow:auto;
+    max-width:100%;
+    width:200px;
+    background-color:#ccc;
+    color:#333;
+    font-size:20px;
+    padding:1em;
+}

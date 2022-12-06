@@ -11,33 +11,39 @@
 </head>
 <body>
     <header id="head">
-            <button id="inscription">inscription</button>
-            <button id="connection">Connection</button>
+            <button id="inscription" onclick="openInscription()">inscription</button>
+            <button id="connection" onclick="openConnect()">Connection</button>
             <button id="deconnection">Deconnection</button>
-            <button id="profil">Profil</button>
+            <button id="profil" onclick="openProfil()">Profil</button>
         <h1 id="titre">LE FORUM DES GEEKEZ</h1>
     </header>
     <br><hr>
-    <!-- Modal de connection -->
-    <div class="modal" id="modal1">
-    <form method="" action="" id="connect"> 
-        <input type="text" placeholder="Pseudo" name="name1">
-        <input type="text" placeholder="mot de passe" name="mdp1">
-        <button onclick="">Se Connecter</button><button onclick="">Annuler</button>
-    </form>
-    </div>
-
     <!-- Modal d'inscription -->
-    <div class="modal" id="modal2">
-    <form method="" action="" id="inscrire">
-        <input type="text" placeholder="E-Mail" name="mail">
-        <input type="text" placeholder="Pseudo" name="pseudo">
-        <input type="text" placeholder="mot de passe" name="mdp">
-        <button onclick="">S'inscrire</button><button onclick="">Annuler</button>
-    </form>
+    <div class="modal" id="modal1">
+    <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeInscription()">X</span></div>
+    <h2>-- Formulaire d'Inscription --</h2>
+    <input class="pseudoTxtarea" type="text" placeholder="E-Mail" name="mail">
+    <input class="pseudoTxtarea" type="text" placeholder="Pseudo" name="name1">
+    <input class="pseudoTxtarea" type="text" placeholder="mot de passe" name="mdp1">
+    <div style="text-align:center;"><span class="pseudoBtn" onclick="">S'inscrire</span></div>
     </div>
-
-
+    <!-- Modal de connection -->
+    <div class="modal" id="modal2">
+    <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeConnect()">X</span></div>
+    <h2>-- Formulaire de Connection --</h2>
+    <input class="pseudoTxtarea" type="text" placeholder="Pseudo" name="name1">
+    <input class="pseudoTxtarea" type="text" placeholder="mot de passe" name="mdp1">
+    <div style="text-align:center;"><span class="pseudoBtn" onclick="">Se Connecter</span></div>
+    </div>
+    <!-- Modal du Profil -->
+    <div class="modal" id="modal3">
+    <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeProfil()">X</span></div>
+    <h2>-- Page du profil --</h2>
+    <h4>Pseudo:</h4>
+    <h4>Rang:</h4>
+    <h4>Nombre de message posté:</h4>
+    <div style="text-align:center;"><span class="pseudoBtn" onclick="">Se Connecter</span></div>
+    </div>
     <br>
     <table id="conteneur">
         <tr id="index">
@@ -48,6 +54,14 @@
             <td id="colone5">Nombre de vues</td>
         </tr>
     </table>
+    <script>
+    function openInscription(){ document.getElementById("modal1").style.display="flex"; }
+    function closeInscription(){ document.getElementById("modal1").style.display="none"; }
+    function openConnect(){ document.getElementById("modal2").style.display="flex"; }
+    function closeConnect(){ document.getElementById("modal2").style.display="none"; }
+    function openProfil(){ document.getElementById("modal3").style.display="flex"; }
+    function closeProfil(){ document.getElementById("modal3").style.display="none"; }
+    </script>
     <script src="assets/index.js"></script>
 </body>
 </html>
