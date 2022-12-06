@@ -1,4 +1,6 @@
-<?php 
+<?php
+session_start();
+require_once "./forum/forum.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,10 +13,13 @@
 </head>
 <body>
     <header id="head">
+        <?php if(isDisconnect()) { ?>
             <button id="inscription" onclick="openInscription()">inscription</button>
             <button id="connection" onclick="openConnect()">Connection</button>
+        <?php }else{ ?>
             <button id="deconnection">Deconnection</button>
             <button id="profil" onclick="openProfil()">Profil</button>
+        <?php } ?>
         <h1 id="titre">LE FORUM DES GEEKEZ</h1>
     </header>
     <br><hr>
@@ -22,18 +27,22 @@
     <div class="modal" id="modal1">
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeInscription()">X</span></div>
     <h2>-- Formulaire d'Inscription --</h2>
+    <form class="form" action="" method="post">
     <input class="pseudoTxtarea" type="text" placeholder="E-Mail" name="mail">
-    <input class="pseudoTxtarea" type="text" placeholder="Pseudo" name="name1">
-    <input class="pseudoTxtarea" type="text" placeholder="mot de passe" name="mdp1">
-    <div style="text-align:center;"><span class="pseudoBtn" onclick="">S'inscrire</span></div>
+    <input class="pseudoTxtarea" type="text" placeholder="Pseudo" name="name">
+    <input class="pseudoTxtarea" type="text" placeholder="mot de passe" name="mdp">
+    <div style="text-align:center;"><input type="submit" value="S'Inscrire" class="pseudoBtn"></div>
+    </form>
     </div>
     <!-- Modal de connection -->
     <div class="modal" id="modal2">
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeConnect()">X</span></div>
     <h2>-- Formulaire de Connection --</h2>
+    <form class="form" action="" method="post">
     <input class="pseudoTxtarea" type="text" placeholder="Pseudo" name="name1">
     <input class="pseudoTxtarea" type="text" placeholder="mot de passe" name="mdp1">
-    <div style="text-align:center;"><span class="pseudoBtn" onclick="">Se Connecter</span></div>
+    <div style="text-align:center;"><input type="submit" value="Se Connecter" class="pseudoBtn"></div>
+    </form>
     </div>
     <!-- Modal du Profil -->
     <div class="modal" id="modal3">
@@ -42,7 +51,6 @@
     <h4>Pseudo:</h4>
     <h4>Rang:</h4>
     <h4>Nombre de message posté:</h4>
-    <div style="text-align:center;"><span class="pseudoBtn" onclick="">Se Connecter</span></div>
     </div>
     <br>
     <table id="conteneur">
