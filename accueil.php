@@ -1,8 +1,35 @@
 <?php
 session_start();
-require_once "./forum/forum.php";
-?>
 
+function setConnected($loginPostForm, $passwordPostForm) {
+    if (isset($_SESSION)) {
+        
+        $_SESSION['loginPostForm'] = htmlspecialchars(trim($loginPostForm)); 
+        $_SESSION['passwordPostForm'] = htmlspecialchars($passwordPostForm);
+    }
+}
+
+function isDisconnect() { 
+    if (!isset($_SESSION) && !isset($_SESSION['loginPostForm']) && !isset($_SESSION['passwordPostForm'])) {
+        return false;
+    }else {
+        return true;
+    }
+}
+
+if (isset($_POST) && isset($_POST['pseudo1']) && isset($_POST['mdp1'])) {
+    if (!empty($_POST['pseudo1'] && $_POST['mdp1'])) {
+        if (is_string($_POST['pseudo1']) && is_string($_POST['mdp1'])) {
+            setConnected($_POST['pseudo1'], $_POST['mdp1']);
+        }else {
+            echo "</br><p style='text-align:center;color:red;'>Votre login ou mot de passe n'est pas une chaîne de caractère !</p>";
+        }
+    }else {
+        echo "</br><p style='text-align:center;color:red;'>Vous n'avez pas renseigné les champs !</p>";
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,11 +83,11 @@ require_once "./forum/forum.php";
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeProfil()">X</span></div>
     <h2 style="text-align:center">-- Page du profil --</h2>
     <form action="" method="post">
-    <div class="icon">
-    <h4>Pseudo:</h4><div class="tdIcons"><img src="./assets/edit.png" alt="edit" onclick=""></div>
+    <div class="icon" style="display:flex;">
+    <div class="tdIcons"><img src="./assets/edit.png" alt="edit" onclick=""></div><h4>Pseudo:</h4>
     </div>
     <div class="icon">
-    <h4>Mot de Passe:</h4><div class="tdIcons"><img src="./assets/edit.png" alt="edit" onclick=""></div>
+    <div class="tdIcons"><img src="./assets/edit.png" alt="edit" onclick=""></div><h4>Mot de Passe:</h4>
     </div>
     <h4>Rang:</h4>
     <h4>Nombre de message posté:</h4>
