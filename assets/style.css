@@ -94,7 +94,7 @@
 }
 
 .pseudoTxtarea{
-    height:70px;
+    height:20px;
     overflow:auto;
     max-width:100%;
     width:200px;
@@ -103,7 +103,13 @@
     font-size:20px;
     padding:1em;
 }
+.pseudoBtn{
+    width: 150px;
+    margin-top: 20px;
+}
 .form{
+    gap: 10px;
     width: 100%;
-    display: block ;
+    display: flex ;
+    flex-direction: column;
 }
