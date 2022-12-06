@@ -107,7 +107,10 @@ if (isset($_POST) && isset($_POST['pseudo1']) && isset($_POST['mdp1'])) {
             <td id="colone5">Nombre de vues</td>
         </tr>
     </table>
-
+<!-- Tableau ou les topics seront implémenté -->
+    <div name="topic" id="topic">
+    
+    </div>
 <!-- Fontion pour les modals -->
     <script>
     function openInscription(){ document.getElementById("modal1").style.display="flex"; }
