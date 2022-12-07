@@ -7,6 +7,8 @@ $dbhost = 'localhost';
 $dbname = 'forum_users';
 $dbuser = 'root';
 $dbpass = '';
+
+
 try {
 
     $bdd = new PDO( 'mysql:host='.$dbhost.';dbname='.$dbname.'', $dbuser, $dbpass );
@@ -134,14 +136,17 @@ if (isset($_POST) && isset($_POST['pseudo1']) && isset($_POST['mdp1'])) {
     <br>
     <!-- fenêtre de création d'un nouveau Topic -->
     <?php if(isConnect()) { ?>
-    <div><button name="createTopic" id="createTopic" onclick="openCreateTopic()">Créer un topic</button></div>
+
+    <div><button  id="createTopic" onclick="openCreateTopic()">Créer un topic</button></div>
     <?php } ?>
+    <form action="./forum/create.php" method="POST">
     <div class="modal" id="modal6">
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeCreateTopic()">X</span></div>
     <h2 style="text-align:center">-- creer un nouveau Topic --</h2>
-    <p id="content" class="contentTopic" contenteditable>&nbsp;</p>
+    <input id="content" name="createTopic" class="contentTopic" contenteditable>&nbsp;</input>
     <div style="text-align:center;"><input type="submit" value="Créer un nouveau Topic" class="pseudoBtn"></div>
     </div>
+    </form>
 
 
 <!-- Table des topics & début du forum -->

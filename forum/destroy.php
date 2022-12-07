@@ -4,12 +4,14 @@ $dbhost = 'localhost';
 $dbname = 'forum_users';
 $dbuser = 'root';
 $dbpass = '';
+
 try {
 
     $bdd = new PDO( 'mysql:host='.$dbhost.';dbname='.$dbname.'', $dbuser, $dbpass );
 } catch( Exception $e ) {
     die( 'Erreur : ' . $e->getMessage() );
 }
+
 $id='';
 $requete = $bdd->prepare( 'SELECT * FROM utilisateurs WHERE pseudo=:pseudo' );
 $requete->bindParam( ':pseudo',$_SESSION['loginPostForm']);
@@ -17,7 +19,7 @@ $requete->execute();
 
 while ( $data = $requete->fetch() )
 {
-    $id = $data[ 'id' ];
+    $id = $data[ 'pseudo' ];
 }
 $requete->closeCursor();
 
