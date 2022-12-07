@@ -23,6 +23,7 @@ try {
 } catch( Exception $e ) {
     die( 'Erreur : ' . $e->getMessage() );
 }
+
 if(isset($_POST['pseudo']) && $_POST['pseudo'] != ''){    
     $longueur_chaine = strlen($_POST['pseudo']);
     if($longueur_chaine < 8 || $longueur_chaine > 15){
