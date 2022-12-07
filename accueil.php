@@ -1,52 +1,5 @@
 <?php
-session_start();
-$retour = '';
-$erreur = false;
-
-$dbhost = 'localhost';
-$dbname = 'forum_users';
-$dbuser = 'root';
-$dbpass = '';
-try {
-
-    $bdd = new PDO( 'mysql:host='.$dbhost.';dbname='.$dbname.'', $dbuser, $dbpass );
-} catch( Exception $e ) {
-    die( 'Erreur : ' . $e->getMessage() );
-}
-
-function setConnected($loginPostForm, $passwordPostForm) {
-    if (isset($_SESSION)) {
-        
-        $_SESSION['loginPostForm'] = htmlspecialchars(trim($loginPostForm)); 
-        $_SESSION['passwordPostForm'] = htmlspecialchars($passwordPostForm);
-    }
-}
-
-function isConnect() { 
-    if (isset($_SESSION) && isset($_SESSION['loginPostForm']) && isset($_SESSION['passwordPostForm'])) {
-        return true;
-    }else {
-        return false;
-    }
-}
-
-if (isset($_POST) && isset($_POST['pseudo1']) && isset($_POST['mdp1'])) {
-    if (!empty($_POST['pseudo1'] && $_POST['mdp1'])) {
-        $query = $bdd->prepare( 'SELECT * FROM utilisateurs WHERE pseudo=:pseudo1 AND mdp=:mdp1' );
-        $query->bindParam( ':pseudo1', $_POST[ 'pseudo1' ] );
-        $query->bindParam( ':mdp1', $_POST[ 'mdp1' ] );
-        $query->execute();
-        $row = $query->fetchAll(PDO::FETCH_ASSOC);
-        if(!count($row)){
-            // S'il n'y a pas de résultat...
-            $retour .= '<span style="color:red;">L\'utilisateur avec ce mot de passe et ce pseudo n\'existe pas.</span>';
-        }else{
-            setConnected($_POST['pseudo1'], $_POST['mdp1']);
-        }
-    }else {
-        echo "</br><p style='text-align:center;color:red;'>Vous n'avez pas renseigné les champs !</p>";
-    }
-}
+include_once("function.php")
 
 ?>
 <!DOCTYPE html>
@@ -139,9 +92,11 @@ if (isset($_POST) && isset($_POST['pseudo1']) && isset($_POST['mdp1'])) {
     <div class="modal" id="modal6">
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeCreateTopic()">X</span></div>
     <h2 style="text-align:center">-- creer un nouveau Topic --</h2>
-    <input name="titel" style="height:20px; width:600px; padding:1em; margin-left:20%;" type="text" placeholder="Ajouter un titre">
-    <p class="pseudoTxtarea2" id="content" contenteditable>&nbsp;</p>
+    <form action="forum/create.php" method="post">
+    <input name="createTopic" style="height:20px; width:600px; padding:1em; margin-left:20%;" type="text" placeholder="Ajouter un titre">
+    <p name="msgTopic" class="pseudoTxtarea2" id="content" contenteditable>&nbsp;</p>
     <div style="text-align:center;"><input type="submit" value="Créer un nouveau Topic" class="pseudoBtn"></div>
+    </form>
     </div>
 
 <!-- Table des topics & début du forum -->
@@ -158,21 +113,7 @@ if (isset($_POST) && isset($_POST['pseudo1']) && isset($_POST['mdp1'])) {
     <div name="topic" id="topic">
     
     </div>
-<!-- Fontion pour les modals -->
-    <script>
-    function openInscription(){ document.getElementById("modal1").style.display="flex"; }
-    function closeInscription(){ document.getElementById("modal1").style.display="none"; }
-    function openConnect(){ document.getElementById("modal2").style.display="flex"; }
-    function closeConnect(){ document.getElementById("modal2").style.display="none"; }
-    function openProfil(){ document.getElementById("modal3").style.display="flex"; }
-    function closeProfil(){ document.getElementById("modal3").style.display="none"; }
-    function modifPseudo() {document.getElementById("modal4").style.display="flex"; }
-    function closemodifPseudo() {document.getElementById("modal4").style.display="none";}
-    function modifMdp() {document.getElementById("modal5").style.display="flex"; }
-    function closemodifMdp() {document.getElementById("modal5").style.display="none";}
-    function openCreateTopic() {document.getElementById("modal6").style.display="flex"; }
-    function closeCreateTopic() {document.getElementById("modal6").style.display="none";}
-    </script>
+
 
     <script src="assets/index.js"></script>
 </body>
