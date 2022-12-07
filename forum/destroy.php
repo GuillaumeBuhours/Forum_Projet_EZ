@@ -19,7 +19,7 @@ $requete->execute();
 
 while ( $data = $requete->fetch() )
 {
-    $id = $data[ 'pseudo' ];
+    $id = $data[ 'id' ];
 }
 $requete->closeCursor();
 
