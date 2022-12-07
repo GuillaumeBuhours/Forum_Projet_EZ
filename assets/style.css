@@ -87,11 +87,11 @@
 
 .modal{
     display:none;
-    width:60vw;
-    height:60vh;
+    width:65vw;
+    height:65vh;
     position:fixed;
-    top:25%;
-    left:25%;
+    top:20%;
+    left:20%;
     flex-direction:column;
     justify-content:space-around;
     color:white;
@@ -110,6 +110,7 @@
     padding:1em;
 }
 .pseudoBtn{
+    margin: 10px;
     width: 150px;
     margin-top: 20px;
 }
@@ -140,19 +141,25 @@ h4{
     justify-content: space-between;
 }
 #createTopic{
-    justify-items: right;
+    width: 100%;
+    display: grid;
+    grid-template-columns: (repeat(10,10%));
+}
+#createTopicBtn{
+    grid-column: 7;
 }
 
-.contentTopic{
-    height:250px;
+.pseudoTxtarea2{
+    margin-left: 20%;
+    height:200px;
     overflow:auto;
     max-width:100%;
-    width:720px;
+    width:600px;
     background-color:#ccc;
     color:#333;
     font-size:20px;
     padding:1em;
 }
 
-.modal2{display:none;;width:100vw;height:100vh;position:fixed;top:0;left:0;flex-direction:column;justify-content:space-around;color:white;background-color:rgba(0,0,0,0.8)}
-.modal2 *{margin:auto;}
+#addBtn:hover,.closeBtn:hover,.pseudoBtn:hover{cursor:pointer;}
+

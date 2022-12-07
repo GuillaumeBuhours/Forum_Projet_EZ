@@ -64,10 +64,10 @@ if (isset($_POST) && isset($_POST['pseudo1']) && isset($_POST['mdp1'])) {
     <header id="head">
         <?php if(isConnect()) { ?>
             <a href="deco.php">Se Deconnecter</a>
-            <button id="profil" onclick="openProfil()">Profil</button>
+            <button class="pseudoBtn" id="profil" onclick="openProfil()">Profil</button>
         <?php }else{ ?>
-            <button id="inscription" onclick="openInscription()">inscription</button>
-            <button id="connection" onclick="openConnect()">Connection</button>
+            <button class="pseudoBtn" id="inscription" onclick="openInscription()">inscription</button>
+            <button class="pseudoBtn" id="connection" onclick="openConnect()">Connection</button>
         <?php } ?>
         <h1 id="titre">LE FORUM DES GEEKEZ</h1>
     </header>
@@ -134,15 +134,15 @@ if (isset($_POST) && isset($_POST['pseudo1']) && isset($_POST['mdp1'])) {
     <br>
     <!-- fenêtre de création d'un nouveau Topic -->
     <?php if(isConnect()) { ?>
-    <div><button name="createTopic" id="createTopic" onclick="openCreateTopic()">Créer un topic</button></div>
+    <div id="createTopic"><button class="pseudoBtn" name="createTopic" id="createTopicBtn" onclick="openCreateTopic()">Créer un topic</button></div>
     <?php } ?>
     <div class="modal" id="modal6">
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeCreateTopic()">X</span></div>
     <h2 style="text-align:center">-- creer un nouveau Topic --</h2>
-    <p id="content" class="contentTopic" contenteditable>&nbsp;</p>
+    <input name="titel" style="height:20px; width:600px; padding:1em; margin-left:20%;" type="text" placeholder="Ajouter un titre">
+    <p class="pseudoTxtarea2" id="content" contenteditable>&nbsp;</p>
     <div style="text-align:center;"><input type="submit" value="Créer un nouveau Topic" class="pseudoBtn"></div>
     </div>
-
 
 <!-- Table des topics & début du forum -->
     <table id="conteneur">
@@ -160,18 +160,15 @@ if (isset($_POST) && isset($_POST['pseudo1']) && isset($_POST['mdp1'])) {
     </div>
 <!-- Fontion pour les modals -->
     <script>
-
     function openInscription(){ document.getElementById("modal1").style.display="flex"; }
     function closeInscription(){ document.getElementById("modal1").style.display="none"; }
     function openConnect(){ document.getElementById("modal2").style.display="flex"; }
     function closeConnect(){ document.getElementById("modal2").style.display="none"; }
     function openProfil(){ document.getElementById("modal3").style.display="flex"; }
     function closeProfil(){ document.getElementById("modal3").style.display="none"; }
-    function modifPseudo() {document.getElementById("modal4").style.display="flex";
-                             document.getElementById("modal3").style.display="none"; }
+    function modifPseudo() {document.getElementById("modal4").style.display="flex"; }
     function closemodifPseudo() {document.getElementById("modal4").style.display="none";}
-    function modifMdp() {document.getElementById("modal5").style.display="flex";
-                         document.getElementById("modal3").style.display="none"; }
+    function modifMdp() {document.getElementById("modal5").style.display="flex"; }
     function closemodifMdp() {document.getElementById("modal5").style.display="none";}
     function openCreateTopic() {document.getElementById("modal6").style.display="flex"; }
     function closeCreateTopic() {document.getElementById("modal6").style.display="none";}
