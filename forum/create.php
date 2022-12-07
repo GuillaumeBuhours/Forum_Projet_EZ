@@ -28,18 +28,19 @@ foreach ( $query->fetchAll( PDO::FETCH_ASSOC ) as $row ) {
     break;
 }
 
-if (isset($_POST['topic']) && $_POST['topic'] != '') {
-    $longueur_chaine = strlen($_POST['recherche']);
+if (isset($_POST['createTopic']) && $_POST['createTopic'] != '') {
+    $longueur_chaine = strlen($_POST['createTopic']);
 	if($longueur_chaine != 8){
 		$erreur = true;
 		$retour .= "La référence recherchée doit comporter 8 caractères.<br />";
 	}
 	// On vérifie à l'aide d'expression régulière que la référence respecte bien la forme ABCD1234
 	$exp = "/^[a-zA-Z]{4}[0-9]{4}$/";
-	if(!preg_match($exp, $_POST['recherche'])){
+	if(!preg_match($exp, $_POST['createTopic'])){
 		$erreur = true;
 		$retour .= "La référence saisie n'est pas valide.<br />";
 	}
+
 }else{
 	$erreur = true;
 	$retour .= "Veuillez renseigner le champ 'Référence recherchée'.<br />";
@@ -50,7 +51,7 @@ if ( !$erreur ) {
     // On insère les informations en base de données
     $sql = "INSERT INTO utilisateurs VALUES(:topic)";
     $requete = $bdd->prepare( $sql );
-    $requete->bindParam( ':topic',  $_POST[ 'topic' ] );
+    $requete->bindParam( ':topic',  $_POST[ 'createTopic' ] );
     if ( $requete->execute() ) {
         $retour .= "Le topic a été ajouté avec succès.<br />";
         header("refresh:5;url=../accueil.php");
@@ -65,3 +66,5 @@ if ( !$erreur ) {
 if ( $retour != '' ) {
     echo '<p>'.$retour.'</p>';
 }
+
+?>
