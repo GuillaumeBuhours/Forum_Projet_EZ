@@ -21,7 +21,7 @@ if(!$erreur){
 
 if (isset($_POST['createTopic']) && $_POST['createTopic'] != '') {
     $longueur_chaine = strlen($_POST['createTopic']);
-	if($longueur_chaine != 8){
+	if($longueur_chaine <= 8){
 		$erreur = true;
 		$retour .= "La référence recherchée doit comporter 8 caractères.<br />";
 	}

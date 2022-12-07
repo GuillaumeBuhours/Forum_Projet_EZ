@@ -21,7 +21,7 @@ if(!$erreur){
 
 if (isset($_POST['modifTopic']) && $_POST['modifTopic'] != '') {
     $longueur_chaine = strlen($_POST['modifTopic']);
-	if($longueur_chaine != 8){
+	if($longueur_chaine <= 8){
 		$erreur = true;
 		$retour .= "La référence recherchée doit comporter 8 caractères.<br />";
 	}
