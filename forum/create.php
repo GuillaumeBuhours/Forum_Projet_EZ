@@ -40,7 +40,7 @@ if (isset($_POST['createTopic']) && $_POST['createTopic'] != '') {
 
 if ( !$erreur ) {
     // On insère les informations en base de données
-    $sql = " UPDATE utilisateurs SET topic = :topic WHERE pseudo = :pseudo";
+    $sql = " INSERT INTO topic VALUES(NULL,:topic,:pseudo)";
     $requete = $bdd->prepare( $sql );
     $requete->bindParam( ':topic',  $_POST[ 'createTopic' ] );
     $requete->bindParam( ':pseudo',  $_SESSION['loginPostForm']);
