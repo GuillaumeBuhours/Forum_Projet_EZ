@@ -48,7 +48,7 @@
     vertical-align: middle;
 }
 #conteneur{
-    margin: 2% 10%;
+    margin: 0% 10%;
     width: 80%;
     height: auto;
     border: 2px solid red;
@@ -87,8 +87,8 @@
 
 .modal{
     display:none;
-    width:50vw;
-    height:50vh;
+    width:60vw;
+    height:60vh;
     position:fixed;
     top:25%;
     left:25%;
@@ -96,10 +96,6 @@
     justify-content:space-around;
     color:white;
     background-color:rgba(0,0,0,0.9);
-}
-
-.modal{
-    margin:0;
 }
 
 .pseudoTxtarea{
@@ -143,3 +139,20 @@ h4{
 .icon{
     justify-content: space-between;
 }
+#createTopic{
+    justify-items: right;
+}
+
+.contentTopic{
+    height:250px;
+    overflow:auto;
+    max-width:100%;
+    width:720px;
+    background-color:#ccc;
+    color:#333;
+    font-size:20px;
+    padding:1em;
+}
+
+.modal2{display:none;;width:100vw;height:100vh;position:fixed;top:0;left:0;flex-direction:column;justify-content:space-around;color:white;background-color:rgba(0,0,0,0.8)}
+.modal2 *{margin:auto;}

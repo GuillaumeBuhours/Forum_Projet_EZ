@@ -132,6 +132,17 @@ if (isset($_POST) && isset($_POST['pseudo1']) && isset($_POST['mdp1'])) {
     </div>
 
     <br>
+    <!-- fenêtre de création d'un nouveau Topic -->
+    <?php if(isConnect()) { ?>
+    <div><button name="createTopic" id="createTopic" onclick="openCreateTopic()">Créer un topic</button></div>
+    <?php } ?>
+    <div class="modal" id="modal6">
+    <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeCreateTopic()">X</span></div>
+    <h2 style="text-align:center">-- creer un nouveau Topic --</h2>
+    <p id="content" class="contentTopic" contenteditable>&nbsp;</p>
+    <div style="text-align:center;"><input type="submit" value="Créer un nouveau Topic" class="pseudoBtn"></div>
+    </div>
+
 
 <!-- Table des topics & début du forum -->
     <table id="conteneur">
@@ -159,6 +170,8 @@ if (isset($_POST) && isset($_POST['pseudo1']) && isset($_POST['mdp1'])) {
     function closemodifPseudo() {document.getElementById("modal4").style.display="none";}
     function modifMdp() {document.getElementById("modal5").style.display="flex"; }
     function closemodifMdp() {document.getElementById("modal5").style.display="none";}
+    function openCreateTopic() {document.getElementById("modal6").style.display="flex"; }
+    function closeCreateTopic() {document.getElementById("modal6").style.display="none";}
     </script>
 
     <script src="assets/index.js"></script>
