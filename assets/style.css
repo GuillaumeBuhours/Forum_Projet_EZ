@@ -109,6 +109,10 @@
     font-size:20px;
     padding:1em;
 }
+.pseudoBtn:hover{
+    background-color: black;
+    color:white;
+}
 .pseudoBtn{
     margin: 10px;
     width: 150px;
@@ -140,10 +144,17 @@ h4{
 .icon{
     justify-content: space-between;
 }
+
 #createTopic{
     width: 100%;
     display: grid;
     grid-template-columns: (repeat(10,10%));
+}
+#titreTopic{
+    height: 10px; 
+    width: 600px; 
+    padding: 1em; 
+    margin: 1% 20%;
 }
 #createTopicBtn{
     grid-column: 7;

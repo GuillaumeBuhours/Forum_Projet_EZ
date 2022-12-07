@@ -49,9 +49,9 @@ if(isset($_POST['mdp']) && $_POST['mdp'] != ''){
 }
 if(isset($_POST['mail']) && $_POST['mail'] != ''){    
     $longueur_chaine = strlen($_POST['mail']);
-    if($longueur_chaine < 12 || $longueur_chaine > 25){
+    if($longueur_chaine < 12 || $longueur_chaine > 40){
         $erreur = true;
-        $retour .= '<span style="color:red;">Le mail doit être composé de 12 caractères minimum et ne doit pas dépasser 20 caractères.</span>';
+        $retour .= '<span style="color:red;">Le mail doit être composé de 12 caractères minimum.</span>';
     }
     $exp = "/[a-zA-Z0-9]+[@]/";
     if(!preg_match($exp, $_POST['mail'])){
@@ -63,6 +63,7 @@ if(isset($_POST['mail']) && $_POST['mail'] != ''){
 if(!$erreur){
     $pseudo = htmlentities(secure_donnee($_POST['pseudo']));
     $mdp = htmlentities(secure_donnee($_POST['mdp']));
+    $password = password_hash($mdp, PASSWORD_DEFAULT);
     $mail = htmlentities(secure_donnee($_POST['mail']));
     // On vérifie que la référence n'existe pas en base de données
     $query = $bdd->prepare( 'SELECT * FROM utilisateurs WHERE pseudo = :pseudo' );
@@ -76,11 +77,11 @@ if(!$erreur){
     }
 
     if ( !$erreur ) {
-        $sql = "INSERT INTO utilisateurs VALUES(NULL,:mail,:pseudo,:mdp,0,'','',NULL)";
+        $sql = "INSERT INTO utilisateurs VALUES(NULL,:mail,:pseudo,:mdp,0)";
         $requete = $bdd->prepare( $sql );
         $requete->bindParam( ':mail',  $mail );
         $requete->bindParam( ':pseudo', $pseudo );
-        $requete->bindParam( ':mdp', $mdp );
+        $requete->bindParam( ':mdp', $password );
         if ( $requete->execute() ) {
             $retour .= "L'utilisateur a été ajouté avec succès.<br />";
             header("refresh:1;url=../accueil.php");
@@ -92,6 +93,7 @@ if(!$erreur){
 
     }
 }
+
 
 if ( $retour != '' ) {
     echo '<p>'.$retour.'</p>';

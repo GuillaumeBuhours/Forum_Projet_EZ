@@ -85,7 +85,7 @@ include_once("function.php")
     </div>
 
     <br>
-    <!-- fenêtre de création d'un nouveau Topic -->
+<!-- fenêtre de création d'un nouveau Topic -->
     <?php if(isConnect()) { ?>
     <div id="createTopic"><button class="pseudoBtn" name="createTopic" id="createTopicBtn" onclick="openCreateTopic()">Créer un topic</button></div>
     <?php } ?>
@@ -93,7 +93,7 @@ include_once("function.php")
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeCreateTopic()">X</span></div>
     <h2 style="text-align:center">-- creer un nouveau Topic --</h2>
     <form action="forum/create.php" method="post">
-    <input name="createTopic" style="height:20px; width:600px; padding:1em; margin-left:20%;" type="text" placeholder="Ajouter un titre">
+    <input name="createTopic" id="titreTopic" type="text" placeholder="Ajouter un titre">
     <p name="msgTopic" class="pseudoTxtarea2" id="content" contenteditable>&nbsp;</p>
     <div style="text-align:center;"><input type="submit" value="Créer un nouveau Topic" class="pseudoBtn"></div>
     </form>
@@ -113,7 +113,9 @@ include_once("function.php")
     <div name="topic" id="topic">
     
     </div>
-
+        <form action="forum/destroy.php" method="post">
+        <input name="btnDeleteTopic" type="submit" value="Supprimer le topic" class="pseudoBtn">
+        </form>
 
     <script src="assets/index.js"></script>
 </body>

@@ -21,7 +21,7 @@ if(!$erreur){
 
 if (isset($_POST['createTopic']) && $_POST['createTopic'] != '') {
     $longueur_chaine = strlen($_POST['createTopic']);
-	if($longueur_chaine != 8){
+	if($longueur_chaine <= 8){
 		$erreur = true;
 		$retour .= "La référence recherchée doit comporter 8 caractères.<br />";
 	}
@@ -40,7 +40,7 @@ if (isset($_POST['createTopic']) && $_POST['createTopic'] != '') {
 
 if ( !$erreur ) {
     // On insère les informations en base de données
-    $sql = " UPDATE utilisateurs SET topic = :topic WHERE pseudo = :pseudo";
+    $sql = " INSERT INTO topic VALUES(NULL,:topic,:pseudo)";
     $requete = $bdd->prepare( $sql );
     $requete->bindParam( ':topic',  $_POST[ 'createTopic' ] );
     $requete->bindParam( ':pseudo',  $_SESSION['loginPostForm']);

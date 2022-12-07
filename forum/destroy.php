@@ -13,7 +13,7 @@ try {
 }
 
 $id='';
-$requete = $bdd->prepare( 'SELECT * FROM utilisateurs WHERE pseudo=:pseudo' );
+$requete = $bdd->prepare( 'SELECT * FROM topic WHERE pseudo=:pseudo' );
 $requete->bindParam( ':pseudo',$_SESSION['loginPostForm']);
 $requete->execute();
 
