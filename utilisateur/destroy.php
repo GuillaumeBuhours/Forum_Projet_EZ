@@ -10,8 +10,6 @@ try {
 } catch( Exception $e ) {
     die( 'Erreur : ' . $e->getMessage() );
 }
-
-
 $id='';
 $requete = $bdd->prepare( 'SELECT * FROM utilisateurs WHERE pseudo=:pseudo' );
 $requete->bindParam( ':pseudo',$_SESSION['loginPostForm']);
@@ -26,6 +24,7 @@ $requete->closeCursor();
 if ( $id == '' )
 {
     echo 'Impossible de supprimer les données. Le nom de ce membre n\'est pas enregistré dans la base.';
+	header("refresh:1;url=../accueil.php");
     }
     else
     {
@@ -33,6 +32,13 @@ if ( $id == '' )
         $requete->bindParam(':id',$id);
         $requete->execute();
         echo 'Les informations concernant le nouveau membre ont bien été supprimées de la base.';
-$requete->closeCursor();
+		function deconnect() {
+			session_destroy();
+			unset($_SESSION);
+			header('refresh:1;url=../accueil.php');
+			exit();
+		}		
+		deconnect();
+	$requete->closeCursor();
 }
 ?>

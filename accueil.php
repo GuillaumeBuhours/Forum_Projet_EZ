@@ -1,5 +1,18 @@
 <?php
 session_start();
+$retour = '';
+$erreur = false;
+
+$dbhost = 'localhost';
+$dbname = 'forum_users';
+$dbuser = 'root';
+$dbpass = '';
+try {
+
+    $bdd = new PDO( 'mysql:host='.$dbhost.';dbname='.$dbname.'', $dbuser, $dbpass );
+} catch( Exception $e ) {
+    die( 'Erreur : ' . $e->getMessage() );
+}
 
 function setConnected($loginPostForm, $passwordPostForm) {
     if (isset($_SESSION)) {
@@ -19,10 +32,16 @@ function isConnect() {
 
 if (isset($_POST) && isset($_POST['pseudo1']) && isset($_POST['mdp1'])) {
     if (!empty($_POST['pseudo1'] && $_POST['mdp1'])) {
-        if (is_string($_POST['pseudo1']) && is_string($_POST['mdp1'])) {
+        $query = $bdd->prepare( 'SELECT * FROM utilisateurs WHERE pseudo=:pseudo1 AND mdp=:mdp1' );
+        $query->bindParam( ':pseudo1', $_POST[ 'pseudo1' ] );
+        $query->bindParam( ':mdp1', $_POST[ 'mdp1' ] );
+        $query->execute();
+        $row = $query->fetchAll(PDO::FETCH_ASSOC);
+        if(!count($row)){
+            // S'il n'y a pas de résultat...
+            $retour .= '<span style="color:red;">L\'utilisateur avec ce mot de passe et ce pseudo n\'existe pas.</span>';
+        }else{
             setConnected($_POST['pseudo1'], $_POST['mdp1']);
-        }else {
-            echo "</br><p style='text-align:center;color:red;'>Votre login ou mot de passe n'est pas une chaîne de caractère !</p>";
         }
     }else {
         echo "</br><p style='text-align:center;color:red;'>Vous n'avez pas renseigné les champs !</p>";
@@ -52,7 +71,7 @@ if (isset($_POST) && isset($_POST['pseudo1']) && isset($_POST['mdp1'])) {
         <?php } ?>
         <h1 id="titre">LE FORUM DES GEEKEZ</h1>
     </header>
-    
+    <?php echo $retour; ?>
     <br><hr>
     
 <!-- Modal d'inscription -->
@@ -82,19 +101,36 @@ if (isset($_POST) && isset($_POST['pseudo1']) && isset($_POST['mdp1'])) {
     <div class="modal" id="modal3">
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeProfil()">X</span></div>
     <h2 style="text-align:center">-- Page du profil --</h2>
-    <form action="./utilisateur/destroy.php" method="post">
-    <div class="icon" style="display:flex;">
-    <div class="tdIcons"><img src="./assets/edit.png" alt="edit" onclick=""></div><h4>Pseudo:</h4>
+    <form action="utilisateur/destroy.php" method="post">
+    <div class="icon">
+    <h4>Pseudo: <?php echo $_SESSION['loginPostForm']?></h4><div class="tdIcons"><img src="./assets/edit.png" alt="edit" onclick="modifPseudo()"></div>
     </div>
     <div class="icon">
-    <div class="tdIcons"><img src="./assets/edit.png" alt="edit" onclick=""></div><h4>Mot de Passe:</h4>
+    <h4>Mot de Passe: <?php echo $_SESSION['passwordPostForm']?></h4><div class="tdIcons"><img src="./assets/edit.png" alt="edit" onclick="modifMdp()"></div>
     </div>
-    <h4>Rang:</h4>
-    <h4>Nombre de message posté:</h4>
     <div style="text-align:center;"><input name="btnDeleteAccount" type="submit" value="Supprimer son Compte" class="pseudoBtn"></div>
     </form>
     </div>
     
+<!-- modifPseudo -->
+    <div class="modal" id="modal4">
+    <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closemodifPseudo()">X</span></div>
+    <h2 style="text-align:center">-- Modification de Pseudo --</h2>
+    <form class="form" action="utilisateur/update.php" method="post">
+    <input class="pseudoTxtarea" type="text" placeholder="newPseudo" name="newPseudo">
+    <div style="text-align:center;"><input type="submit" value="modifPseudo" class="pseudoBtn"></div>
+    </form>
+    </div>
+<!-- modifMdp -->
+    <div class="modal" id="modal5">
+    <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closemodifMdp()">X</span></div>
+    <h2 style="text-align:center">-- Modification de mot de passe --</h2>
+    <form class="form" action="utilisateur/update.php" method="post">
+    <input class="pseudoTxtarea" type="text" placeholder="newMdp" name="newMdp">
+    <div style="text-align:center;"><input type="submit" value="modifMdp" class="pseudoBtn"></div>
+    </form>
+    </div>
+
     <br>
 
 <!-- Table des topics & début du forum -->
@@ -119,6 +155,10 @@ if (isset($_POST) && isset($_POST['pseudo1']) && isset($_POST['mdp1'])) {
     function closeConnect(){ document.getElementById("modal2").style.display="none"; }
     function openProfil(){ document.getElementById("modal3").style.display="flex"; }
     function closeProfil(){ document.getElementById("modal3").style.display="none"; }
+    function modifPseudo() {document.getElementById("modal4").style.display="flex"; }
+    function closemodifPseudo() {document.getElementById("modal4").style.display="none";}
+    function modifMdp() {document.getElementById("modal5").style.display="flex"; }
+    function closemodifMdp() {document.getElementById("modal5").style.display="none";}
     </script>
 
     <script src="assets/index.js"></script>
