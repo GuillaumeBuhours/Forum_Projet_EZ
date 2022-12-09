@@ -74,7 +74,7 @@ if(!$erreur){
     }
 
     if ( !$erreur ) {
-        $sql = "INSERT INTO utilisateurs VALUES(NULL,:mail,:pseudo,:mdp, 0)";
+        $sql = "INSERT INTO utilisateurs VALUES(NULL,:mail,:pseudo,:mdp,0)";
         $requete = $bdd->prepare( $sql );
         $requete->bindParam( ':mail',  $mail );
         $requete->bindParam( ':pseudo', $pseudo );

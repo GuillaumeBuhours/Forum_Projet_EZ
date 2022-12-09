@@ -31,6 +31,7 @@ else
     $requete->bindParam(':id',$id);
     $requete->execute();
     echo 'Les informations concernant le nouveau membre ont bien été supprimées de la base.';
+    heaeder('refresh:2;url=../accueil.php');
     $requete->closeCursor();
 }
 ?>
