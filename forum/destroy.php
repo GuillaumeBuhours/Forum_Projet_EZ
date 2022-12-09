@@ -27,6 +27,7 @@ if ( $id == '' )
 {
     echo 'Impossible de supprimer les données. Le topic de ce membre n\'est pas enregistré dans la base, ou le topic n\appartient pas au membre.';
 	header("refresh:1;url=../accueil.php");
+    $requete->closeCursor();
     }
     else
     {
@@ -34,7 +35,7 @@ if ( $id == '' )
         $requete->bindParam(':id',$id);
         $requete->execute();
         echo 'Les informations concernant le topic de ce membre ont bien été supprimées de la base.';
-
-	$requete->closeCursor();
+        header('refresh:2;url=../accueil.php');
+	    $requete->closeCursor();
 }
 ?>
