@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var reponse;
   var json;
   if (xhr != false) {
-      xhr.open("POST", "../ez_test/forum/readall_topic.php", true);
+      xhr.open("POST", "./forum/readall_topic.php", true);
       xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
       xhr.onreadystatechange = function () {
           if (xhr.readyState == 4 && xhr.status == 200) {
@@ -138,7 +138,7 @@ let id = document.getElementById("recuperationId").value;
   xhr = getRequest();
   let reponse;
   if (xhr != false) {
-      xhr.open("POST", "../ez_test/forum/update.php", true);
+      xhr.open("POST", "./forum/update.php", true);
       xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
       xhr.onreadystatechange = function () {
           if (xhr.readyState == 4 && xhr.status == 200) {
@@ -159,7 +159,7 @@ function deleteTopic(id){
   xhr = getRequest();
   var reponse;
   if (xhr != false) {
-      xhr.open("POST", "../ez_test/forum/destroy.php", true);
+      xhr.open("POST", "./forum/destroy.php", true);
       xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
       xhr.onreadystatechange = function () {
           if (xhr.readyState == 4 && xhr.status == 200) {
