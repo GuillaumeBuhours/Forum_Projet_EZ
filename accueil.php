@@ -34,7 +34,7 @@ include_once("function.php")
     <form class="form" action="utilisateur/create.php" method="post">
     <input class="pseudoTxtarea" type="text" placeholder="E-Mail" name="mail">
     <input class="pseudoTxtarea" type="text" placeholder="Pseudo" name="pseudo">
-    <input class="pseudoTxtarea" type="text" placeholder="mot de passe" name="mdp">
+    <input class="pseudoTxtarea" type="password" placeholder="mot de passe" name="mdp">
     <div style="text-align:center;"><input type="submit" value="S'Inscrire" class="pseudoBtn"></div>
     </form>
     </div>
@@ -45,7 +45,7 @@ include_once("function.php")
     <h2 style="text-align:center">-- Formulaire de Connection --</h2>
     <form class="form" action="accueil.php" method="post">
     <input class="pseudoTxtarea" type="text" placeholder="Pseudo" name="pseudo1">
-    <input class="pseudoTxtarea" type="text" placeholder="mot de passe" name="mdp1">
+    <input class="pseudoTxtarea" type="password" placeholder="mot de passe" name="mdp1">
     <div style="text-align:center;"><input type="submit" value="Se Connecter" class="pseudoBtn"></div>
     </form>
     </div>
@@ -79,7 +79,7 @@ include_once("function.php")
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closemodifMdp()">X</span></div>
     <h2 style="text-align:center">-- Modification de mot de passe --</h2>
     <form class="form" action="utilisateur/update.php" method="post">
-    <input class="pseudoTxtarea" type="text" placeholder="newMdp" name="newMdp">
+    <input class="pseudoTxtarea" type="password" placeholder="newMdp" name="newMdp">
     <div style="text-align:center;"><input type="submit" value="modifMdp" class="pseudoBtn"></div>
     </form>
     </div>
@@ -87,21 +87,52 @@ include_once("function.php")
     <br>
 <!-- fenêtre de création d'un nouveau Topic -->
     <?php if(isConnect()) { ?>
-    <div id="createTopic"><button class="pseudoBtn" name="createTopic" id="createTopicBtn" onclick="openCreateTopic()">Créer un topic</button></div>
+    <div id="createTopic"><button class="pseudoBtn" id="createTopicBtn" onclick="openCreateTopic()">Créer un topic</button></div>
     <?php } ?>
     <div class="modal" id="modal6">
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeCreateTopic()">X</span></div>
     <h2 style="text-align:center">-- creer un nouveau Topic --</h2>
     <form action="forum/create.php" method="post">
-    <input name="createTopic" id="titreTopic" type="text" placeholder="Ajouter un titre">
+    <input name="createTopic" id="createTopic" type="text" placeholder="Ajouter un titre">
     <p name="msgTopic" class="pseudoTxtarea2" id="content" contenteditable>&nbsp;</p>
-    <div style="text-align:center;"><input type="submit" value="Créer un nouveau Topic" class="pseudoBtn"></div>
+    <div style="text-align:center;"><input type="submit" id="creeTopic" value="Créer un nouveau Topic" class="pseudoBtn"></div>
     </form>
     </div>
-
+<!-- modifTopic -->
+<div class="modal" id="modal7">
+    <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closemodifTopic()">X</span></div>
+    <h2 style="text-align:center">-- Update topic --</h2>
+    <form class="form" action="forum/update.php" method="post">
+    <input type="hidden" id="recuperationId" name="id"/>
+    <input class="pseudoTxtarea" type="text" placeholder="modifTopic" name="modifTopic" id="modifTopic">
+    <div style="text-align:center;"><input type="submit" value="modifTopic" class="pseudoBtn" onclick="UpdateTopic()"></div>
+    </form>
+    </div>
+    <!-- fenêtre de création d'un nouveau Message -->
+<div class="modal" id="modal8">
+    <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeCreateMessage()">X</span></div>
+    <h2 style="text-align:center">-- creer un nouveau Message--</h2>
+    <form action="message/create.php" method="post">
+    <input name="createMessage" id="createMessage" type="text" placeholder="Ajouter un Message">
+    <input name="topicAssocie" id="topicAssocie" type="text" placeholder="Ajouter un topic associé">
+    <div style="text-align:center;">
+    <input type="submit" value="Créer un nouveau Message" class="pseudoBtn">
+    </div>
+    </form>
+</div>
+<!-- modifMessage -->
+<div class="modal" id="modal9">
+    <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closemodifMessage()">X</span></div>
+    <h2 style="text-align:center">-- Update Message --</h2>
+    <form class="form" action="message/update.php" method="post">
+    <input type="hidden" id="recupIdMessage" name="idMessage"/>
+    <input class="pseudoTxtarea" type="text" placeholder="modifMessage" name="modifMessage" id="modifMessage">
+    <div style="text-align:center;"><input type="submit" value="modifMessage" class="pseudoBtn" onclick="UpdateMessage()"></div>
+    </form>
+    </div>
 <!-- Table des topics & début du forum -->
     <table id="conteneur">
-        <tr id="index">
+        <tr>
             <td id="colone1">Icone</td>
             <td id="colone2">Nom du Topic</td>
             <td id="colone3">Créateur</td>
@@ -109,14 +140,22 @@ include_once("function.php")
             <td id="colone5">Nombre de vues</td>
         </tr>
     </table>
-<!-- Tableau ou les topics seront implémenté -->
-    <div name="topic" id="topic">
     
+<!-- Table des Message -->
+    <div style="margin-top:50px;">
+    <?php if(isConnect()) { ?>
+    <div id="createTopic"><button class="pseudoBtn" id="createTopicBtn" onclick="openCreateTopic()">Créer un Message</button></div>
+    <?php } ?>
+    <table id="conteneur">
+        <tr>
+            <td id="colone1">Icone</td>
+            <td id="colone2">Nom du Message</td>
+            <td id="colone3">Créateur</td>
+            <td id="colone4">-</td>
+            <td id="colone5">-</td>
+        </tr>
+    </table>
     </div>
-        <form action="forum/destroy.php" method="post">
-        <input name="btnDeleteTopic" type="submit" value="Supprimer le topic" class="pseudoBtn">
-        </form>
-
     <script src="assets/index.js"></script>
 </body>
 </html>

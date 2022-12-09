@@ -1,9 +1,15 @@
 <?php
 session_start();
-
 $retour = '';
 $erreur = false;
 
+function secure_donnee( $donnee ) {
+    if ( ctype_digit( $donnee ) ) {
+        return intval( $donnee );
+    } else {
+        return addslashes( $donnee );
+    }
+}
 $dbhost = 'localhost';
 $dbname = 'forum_users';
 $dbuser = 'root';
@@ -15,45 +21,41 @@ try {
     die( 'Erreur : ' . $e->getMessage() );
 }
 
-// Si les données reçues sont valides, on va les sécuriser en s'aidant de notre fonction créee au début
-if(!$erreur){
-    // On vérifie que la référence n'existe pas en base de données
+if ( !$erreur ) {
+    if ( isset( $_POST[ 'modifTopic' ] ) && $_POST[ 'modifTopic' ] != '' ) {
+        $longueur_chaine = strlen( $_POST[ 'modifTopic' ] );
+        if ( $longueur_chaine <= 8 ) {
+            $erreur = true;
+            $retour .= 'La référence recherchée doit comporter 8 caractères.<br />';
+        }
+        $exp = '/[a-zA-Z]/';
+        if ( !preg_match( $exp, $_POST[ 'modifTopic' ] ) ) {
+            $erreur = true;
+            $retour .= "La référence saisie n'est pas valide.<br />";
+        }
 
-if (isset($_POST['modifTopic']) && $_POST['modifTopic'] != '') {
-    $longueur_chaine = strlen($_POST['modifTopic']);
-	if($longueur_chaine <= 8){
-		$erreur = true;
-		$retour .= "La référence recherchée doit comporter 8 caractères.<br />";
-	}
-	// On vérifie à l'aide d'expression régulière que la référence respecte bien la forme ABCD1234
-	$exp = "/[a-zA-Z]/";
-	if(!preg_match($exp, $_POST['modifTopic'])){
-		$erreur = true;
-		$retour .= "La référence saisie n'est pas valide.<br />";
-	}
-
-}else{
-	$erreur = true;
-	$retour .= "Veuillez renseigner le champ 'Référence recherchée'.<br />";
-}
+    } else {
+        $erreur = true;
+        $retour .= "Veuillez renseigner le champ 'Référence recherchée'.<br />";
+    }
 }
 
 if ( !$erreur ) {
-    // On insère les informations en base de données
-    $sql = " UPDATE utilisateurs SET topic = :topic WHERE pseudo = :pseudo";
+    $modifTopic = htmlentities( secure_donnee( $_POST[ 'modifTopic' ] ) );
+    $sql = 'UPDATE topic SET topic = :topic WHERE pseudo = :pseudo AND id= :id';
     $requete = $bdd->prepare( $sql );
-    $requete->bindParam( ':topic',  $_POST[ 'modifTopic' ] );
-    $requete->bindParam( ':pseudo',  $_SESSION['loginPostForm']);
+    $requete->bindParam( ':topic',  $modifTopic );
+    $requete->bindParam( ':pseudo',  $_SESSION[ 'loginPostForm' ] );
+    $requete->bindParam( ':id',  $_POST[ 'id' ] );
     if ( $requete->execute() ) {
-        $retour .= "Le topic a été ajouté avec succès.<br />";
-        header("refresh:5;url=../accueil.php");
+        $retour .= 'Le topic a été modifier avec succès.<br />';
+        header( 'Location:../accueil.php' );
     } else {
-        $retour .= "Un erreur est apparue lors de l'ajout du topic.<br />";
-        header("refresh:5;url=../accueil.php");
+        $retour .= 'Une erreur est apparue lors de la modification du topic.<br />';
+        header( 'Location:../accueil.php' );
     }
     $requete->closeCursor();
 }
-
 
 if ( $retour != '' ) {
     echo '<p>'.$retour.'</p>';

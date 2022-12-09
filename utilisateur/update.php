@@ -3,11 +3,11 @@ session_start();
 $erreurnewPseudo = false;
 $erreurnewMdp = false;
 function isConnect() { 
-    if (isset($_SESSION) && isset($_SESSION['loginPostForm']) && isset($_SESSION['passwordPostForm'])) {
-        return true;
-    }else {
-        return false;
-    }
+	if (isset($_SESSION) && isset($_SESSION['loginPostForm']) && isset($_SESSION['passwordPostForm'])) {
+		return true;
+	}else {
+		return false;
+	}
 }
 function secure_donnee($donnee){
     if(ctype_digit($donnee)){
@@ -29,12 +29,13 @@ try {
 } catch( Exception $e ) {
     die( 'Erreur : ' . $e->getMessage() );
 }
+
 if (isConnect()) {
-    if(isset($_POST['newPseudo']) && $_POST['newPseudo'] != ''){    
+    if(isset($_POST['newPseudo']) && $_POST['newPseudo'] != ''){	
         $longueur_chaine = strlen($_POST['newPseudo']);
         if($longueur_chaine < 8 || $longueur_chaine > 15){
             $erreurnewPseudo = true;
-            $retour .= '<span style="color:red;">Le newPseudo doit être composé de 4 caractères minimum et ne doit pas dépasser 15 caractères.</span>';
+            $retour .= '<span style="color:red;">Le newPseudo doit être composé de 8 caractères minimum et ne doit pas dépasser 15 caractères.</span>';
         }
         $exp = "/[a-zA-Z0-9]/";
         if(!preg_match($exp, $_POST['newPseudo'])){
@@ -53,11 +54,11 @@ if (isConnect()) {
     }
 }
 if (isConnect()) {
-    if(isset($_POST['newMdp']) && $_POST['newMdp'] != ''){    
+    if(isset($_POST['newMdp']) && $_POST['newMdp'] != ''){	
         $longueur_chaine = strlen($_POST['newMdp']);
         if($longueur_chaine < 8 || $longueur_chaine > 20){
             $erreurnewMdp = true;
-            $retour .= '<span style="color:red;">Le newMdp doit être composé de 12 caractères minimum et ne doit pas dépasser 20 caractères.</span>';
+            $retour .= '<span style="color:red;">Le newMdp doit être composé de 8 caractères minimum et ne doit pas dépasser 20 caractères.</span>';
         }
         $exp = "/[a-zA-Z0-9]/";
         if(!preg_match($exp, $_POST['newMdp'])){

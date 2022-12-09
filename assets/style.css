@@ -67,9 +67,18 @@
     width: 40px;
     padding: 10px;
 }
+.colone1{
+    border: 2px solid white;
+    width: 40px;
+    padding: 10px;
+}
 #colone2{
     border: 2px solid white;
     width: 600px;
+    cursor: pointer;
+}
+#colone2:hover{
+    text-decoration: underline;
 }
 #colone3{
     border: 2px solid white;
@@ -84,7 +93,10 @@
     border-radius: 0 1.8em 0 0;
     width: 100px;
 }
-
+.colone5{
+    border: 2px solid white;
+    width: 100px;
+}
 .modal{
     display:none;
     width:65vw;
@@ -108,10 +120,6 @@
     color:#333;
     font-size:20px;
     padding:1em;
-}
-.pseudoBtn:hover{
-    background-color: black;
-    color:white;
 }
 .pseudoBtn{
     margin: 10px;
@@ -144,17 +152,10 @@ h4{
 .icon{
     justify-content: space-between;
 }
-
 #createTopic{
     width: 100%;
     display: grid;
     grid-template-columns: (repeat(10,10%));
-}
-#titreTopic{
-    height: 10px; 
-    width: 600px; 
-    padding: 1em; 
-    margin: 1% 20%;
 }
 #createTopicBtn{
     grid-column: 7;

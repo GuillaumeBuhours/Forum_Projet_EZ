@@ -1,5 +1,4 @@
 <?php
-require_once __DIR__.'/Utilisateur.php';
 $retour = '';
 $erreur = false;
 function secure_donnee($donnee){
@@ -10,25 +9,25 @@ function secure_donnee($donnee){
     }
 }
 if (!isset($_POST)) {
-    $erreurnewPseudo = true;
-    $erreurnewMdp = true;
+    $erreur = true;
 }
+
 $dbhost = 'localhost';
 $dbname = 'forum_users';
 $dbuser = 'root';
 $dbpass = '';
 try {
-
     $bdd = new PDO( 'mysql:host='.$dbhost.';dbname='.$dbname.'', $dbuser, $dbpass );
 } catch( Exception $e ) {
     die( 'Erreur : ' . $e->getMessage() );
 }
 
-if(isset($_POST['pseudo']) && $_POST['pseudo'] != ''){    
+
+if(isset($_POST['pseudo']) && $_POST['pseudo'] != ''){	
     $longueur_chaine = strlen($_POST['pseudo']);
     if($longueur_chaine < 8 || $longueur_chaine > 15){
         $erreur = true;
-        $retour .= '<span style="color:red;">Le pseudo doit être composé de 4 caractères minimum et ne doit pas dépasser 15 caractères.</span>';
+        $retour .= '<span style="color:red;">Le pseudo doit être composé de 8 caractères minimum et ne doit pas dépasser 15 caractères.</span>';
     }
     $exp = "/[a-zA-Z0-9]/";
     if(!preg_match($exp, $_POST['pseudo'])){
@@ -36,11 +35,11 @@ if(isset($_POST['pseudo']) && $_POST['pseudo'] != ''){
         $retour .= '<span style="color:red;">La pseudo saisie n\'est pas valide.</span>';
     }
 }
-if(isset($_POST['mdp']) && $_POST['mdp'] != ''){    
+if(isset($_POST['mdp']) && $_POST['mdp'] != ''){	
     $longueur_chaine = strlen($_POST['mdp']);
     if($longueur_chaine < 8 || $longueur_chaine > 20){
         $erreur = true;
-        $retour .= '<span style="color:red;">Le mot de passe doit être composé de 12 caractères minimum et ne doit pas dépasser 20 caractères.</span>';
+        $retour .= '<span style="color:red;">Le mot de passe doit être composé de 8 caractères minimum et ne doit pas dépasser 20 caractères.</span>';
     }
     $exp = "/[a-zA-Z0-9]/";
     if(!preg_match($exp, $_POST['mdp'])){
@@ -48,11 +47,11 @@ if(isset($_POST['mdp']) && $_POST['mdp'] != ''){
         $retour .= '<span style="color:red;">La mot de passe  saisie n\'est pas valide.</span>';
     }
 }
-if(isset($_POST['mail']) && $_POST['mail'] != ''){    
+if(isset($_POST['mail']) && $_POST['mail'] != ''){	
     $longueur_chaine = strlen($_POST['mail']);
-    if($longueur_chaine < 12 || $longueur_chaine > 40){
+    if($longueur_chaine < 12 || $longueur_chaine > 25){
         $erreur = true;
-        $retour .= '<span style="color:red;">Le mail doit être composé de 12 caractères minimum.</span>';
+        $retour .= '<span style="color:red;">Le mail doit être composé de 12 caractères minimum et ne doit pas dépasser 20 caractères.</span>';
     }
     $exp = "/[a-zA-Z0-9]+[@]/";
     if(!preg_match($exp, $_POST['mail'])){
@@ -60,13 +59,10 @@ if(isset($_POST['mail']) && $_POST['mail'] != ''){
         $retour .= '<span style="color:red;">La mail  saisie n\'est pas valide.</span>';
     }
 }
-// Si les données reçues sont valides, on va les sécuriser en s'aidant de notre fonction créee au début
 if(!$erreur){
     $pseudo = htmlentities(secure_donnee($_POST['pseudo']));
-    $mdp = htmlentities(secure_donnee($_POST['mdp']));
-    $password = password_hash($mdp, PASSWORD_DEFAULT);
-    $mail = htmlentities(secure_donnee($_POST['mail']));
-    // On vérifie que la référence n'existe pas en base de données
+	$mdp = htmlentities(secure_donnee($_POST['mdp']));
+	$mail = htmlentities(secure_donnee($_POST['mail']));
     $query = $bdd->prepare( 'SELECT * FROM utilisateurs WHERE pseudo = :pseudo' );
     $query->bindParam( ':pseudo', $_POST[ 'pseudo' ] );
     $query->execute();
@@ -82,7 +78,7 @@ if(!$erreur){
         $requete = $bdd->prepare( $sql );
         $requete->bindParam( ':mail',  $mail );
         $requete->bindParam( ':pseudo', $pseudo );
-        $requete->bindParam( ':mdp', $password );
+        $requete->bindParam( ':mdp', $mdp );
         if ( $requete->execute() ) {
             $retour .= "L'utilisateur a été ajouté avec succès.<br />";
             header("refresh:1;url=../accueil.php");
@@ -91,14 +87,11 @@ if(!$erreur){
             header("refresh:1;url=../accueil.php");
         }
         $requete->closeCursor();
-
     }
 }
-
 
 if ( $retour != '' ) {
     echo '<p>'.$retour.'</p>';
 }
-
 
 ?>

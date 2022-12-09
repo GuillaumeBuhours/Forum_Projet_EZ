@@ -17,8 +17,8 @@ try {
 function setConnected($loginPostForm, $passwordPostForm) {
     if (isset($_SESSION)) {
         
-        $_SESSION['loginPostForm'] = htmlspecialchars(trim($loginPostForm)); 
-        $_SESSION['passwordPostForm'] = htmlspecialchars($passwordPostForm);
+        $_SESSION['loginPostForm'] = htmlspecialchars(secure_donnee(trim($loginPostForm))); 
+        $_SESSION['passwordPostForm'] = htmlspecialchars(secure_donnee($passwordPostForm));
     }
 }
 
@@ -42,7 +42,6 @@ if (!isset($_POST)) {
 }
 
 /*********** debut tests ***********/
-
 if(isset($_POST['pseudo1']) && $_POST['pseudo1'] != ''){    
     $longueur_chaine = strlen($_POST['pseudo1']);
     if($longueur_chaine < 8 || $longueur_chaine > 15){

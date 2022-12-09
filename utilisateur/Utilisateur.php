@@ -5,9 +5,9 @@ require_once __DIR__.'/../message/Message.php';
 
 class Utilisateur
 {
+    private $mail;
     private $pseudo;
-    private $nom;
-    private $prenom;
+    private $mdp;
 
     //private $estAdmin = false;
 
@@ -37,12 +37,12 @@ class Utilisateur
      * @param $nom
      * @param $prenom
      */
-    public function __construct($id, $pseudo, $nom, $prenom)//, $estAdmin = false)
+    public function __construct($id, $mail, $pseudo, $mdp)//, $estAdmin = false)
     {
         $this->id = $id;
+        $this->mail = $mail;
         $this->pseudo = $pseudo;
-        $this->nom = $nom;
-        $this->prenom = $prenom;
+        $this->mdp = $mdp;
 
         //$this->estAdmin = $estAdmin;
     }
@@ -113,17 +113,17 @@ class Utilisateur
     /**
      * @return mixed
      */
-    public function getNom()
+    public function getMail()
     {
-        return $this->nom;
+        return $this->mail;
     }
 
     /**
      * @return mixed
      */
-    public function getPrenom()
+    public function getMdp()
     {
-        return $this->prenom;
+        return $this->mdp;
     }
 
 
