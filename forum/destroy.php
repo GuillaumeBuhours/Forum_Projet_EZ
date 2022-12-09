@@ -1,15 +1,5 @@
 <?php
-session_start();
-$dbhost = 'localhost';
-$dbname = 'forum_users';
-$dbuser = 'root';
-$dbpass = '';
-
-try {
-    $bdd = new PDO( 'mysql:host='.$dbhost.';dbname='.$dbname.'', $dbuser, $dbpass );
-} catch( Exception $e ) {
-    die( 'Erreur : ' . $e->getMessage() );
-}
+include_once("./connection_bdd.php");
 
 $id='';
 $requete = $bdd->prepare( 'SELECT * FROM topic WHERE pseudo=:pseudo AND id=:id' );

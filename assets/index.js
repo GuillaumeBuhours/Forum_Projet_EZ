@@ -1,59 +1,61 @@
-function openInscription() {
+//Les functions d'affiche de modal
+    function openInscription() {
     document.getElementById("modal1").style.display = "flex";
-}
-function closeInscription() {
+    }
+    function closeInscription() {
     document.getElementById("modal1").style.display = "none";
-}
+    }
 
-function openConnect() {
+    function openConnect() {
     document.getElementById("modal2").style.display = "flex";
-}
-function closeConnect() {
+    }
+    function closeConnect() {
     document.getElementById("modal2").style.display = "none";
-}
+    }
 
-function openProfil() {
+    function openProfil() {
     document.getElementById("modal3").style.display = "flex";
-}
-function closeProfil() {
+    }
+    function closeProfil() {
     document.getElementById("modal3").style.display = "none";
-}
+    }
 
-function modifPseudo() {
+    function modifPseudo() {
     document.getElementById("modal4").style.display = "flex";
-}
-function closemodifPseudo() {
+    }
+    function closemodifPseudo() {
     document.getElementById("modal4").style.display = "none";
-}
+    }
 
-function modifMdp() {
+    function modifMdp() {
     document.getElementById("modal5").style.display = "flex";
-}
-function closemodifMdp() {
+    }
+    function closemodifMdp() {
     document.getElementById("modal5").style.display = "none";
-}
+    }
 
-function openCreateTopic() {
+    function openCreateTopic() {
     document.getElementById("modal6").style.display = "flex";
-}
-function closeCreateTopic() {
+    }
+    function closeCreateTopic() {
     document.getElementById("modal6").style.display = "none";
-}
+    }
 
-function closemodifTopic(){
+    function closemodifTopic(){
     document.getElementById("modal7").style.display = "none";
-}
-function closeCreateMessage() {
+    }
+    function openCreateMessage(){
+    document.getElementById("modal8").style.display = "flex";
+    }
+    function closeCreateMessage() {
     document.getElementById("modal8").style.display = "none";
-}
-function openCreateMessage() {
-  document.getElementById("modal8").style.display = "flex";
-}
-function closemodifMessage(){
+    }
+    function closemodifMessage(){
     document.getElementById("modal9").style.display = "none";
-}
+    }
+
 //readall json
-document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () {
     function getRequest() {
         var xhr;
         if (window.XMLHttpRequest) {
@@ -67,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         return xhr;
     }
-    //affiche tous les topics
+//affiche tous les topics
     function EzTopicLigne(ezJson) {
         return '<tr id="'+ezJson.id+'">'+
             '<td class="colone1"><div class="tdIcons"><img style="cursor:pointer;" src="./assets/edit.png" alt="edit" onclick=\'modifTopic('+ezJson.id+',"'+ezJson.topic+'")\'></div></td>'+
@@ -86,11 +88,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         return html;
     }
-    var xhr;	
-    xhr = getRequest();
-    var reponse;
-    var json;
-    if (xhr != false) {
+        var xhr;	
+        xhr = getRequest();
+        var reponse;
+        var json;
+        if (xhr != false) {
         xhr.open("POST", "./forum/readall_topic.php", true);
         xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
         xhr.onreadystatechange = function () {
@@ -106,14 +108,9 @@ document.addEventListener("DOMContentLoaded", function () {
         };
         xhr.send();
     }
-    //affiche les messages lié au topic selectionner
-
-
-
-
-
-
 });
+//affiche les messages lié au topic selectionner
+
 function getRequest() {
     var xhr;
     if (window.XMLHttpRequest) {
@@ -134,7 +131,7 @@ function modifTopic(id,topic){
     document.getElementById("topicActuel").innerText += '  ' + topic;
 }
 //update topic
-function UpdateTopic(){
+    function UpdateTopic(){
     var xhr;
 	let id = document.getElementById("recuperationId").value;
     let modifTopic = document.getElementById('modifTopic').innerText;
@@ -153,11 +150,11 @@ function UpdateTopic(){
             }
         };
         xhr.send(data);
+        }
     }
-}
 
 //delete topic
-function deleteTopic(id){
+    function deleteTopic(id){
     var xhr;
     let data = "&id="+id;		
     xhr = getRequest();
@@ -176,5 +173,50 @@ function deleteTopic(id){
     }
     var child = document.getElementById(id);
     child.parentNode.removeChild(child);
-}
+    }
 
+//affiche les messages lié au topic selectionner
+    function afficheMessage(topic,pseudo) {
+    document.getElementById("topicAssocie").value=topic;
+    function EzMessageLigne(ezJson) {
+        return '<tr id="'+ezJson.id+'">'+
+            '<td class="colone1"><div class="tdIcons"><img style="cursor:pointer;" src="./assets/edit.png" alt="edit" onclick=\'modifMessage('+ezJson.id+')\'></div></td>'+
+            '<td id="colone2">'+ezJson.msg+'</td>'+
+            '<td id="colone3">'+ezJson.pseudo+'<span></td>'+
+            '<td id="colone4">'+ezJson.topic+'</td>'+
+            '<td class="colone5" style="color:red;cursor:pointer;" onclick="deleteMessage('+ezJson.id+')">X</td>'+
+            '</tr>';
+    }
+    
+    function EzMessage(ezJson){
+        var html="";
+        for (var i=0;i<ezJson.length;i++) {
+            html+=EzMessageLigne(ezJson[i]);
+        }
+        return html;
+    }
+    var xhr;
+    xhr = getRequest();
+    var reponse;
+    var json;
+    let data = "&topic="+topic+"&pseudo="+pseudo;        
+    if (xhr != false) {
+        xhr.open("POST", "./message/show.php", true);
+        xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                reponse = xhr.responseText;
+                console.log(reponse);
+                json = JSON.parse(reponse);
+                console.log(json);
+                let htmlStr = EzMessage(json);
+                document.querySelector(".message").innerHTML=htmlStr;
+            } else {
+                reponse = "Problème lors de l'appel AJAX";
+            }
+            
+        };
+        xhr.send(data);
+        
+    }
+}

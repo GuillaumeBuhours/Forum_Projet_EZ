@@ -62,6 +62,16 @@
     background-color: black;
     color: white;
 }
+#conteneur2{
+    margin: 0% 10%;
+    width: 80%;
+    height: auto;
+    border: 2px solid black;
+    text-align: center;
+    font-weight: bold;
+    background-color: rgb(102, 99, 99);
+    color: white;
+}
 #index{
     border: 2px solid white;
 }
@@ -172,7 +182,13 @@ h4{
 #createTopicBtn{
     grid-column: 7;
 }
-
+.create{
+    margin: 1% 20%;
+    height: 25px;
+    max-width: 100%;
+    width: 600px;
+    padding: 0.5em;
+}
 .pseudoTxtarea2{
     margin-left: 20%;
     height:200px;

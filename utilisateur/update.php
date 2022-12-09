@@ -1,5 +1,5 @@
 <?php
-session_start();
+include_once("./connection_bdd.php");
 $erreurnewPseudo = false;
 $erreurnewMdp = false;
 function isConnect() { 
@@ -19,15 +19,6 @@ function secure_donnee($donnee){
 if (!isset($_POST)) {
     $erreurnewPseudo = true;
     $erreurnewMdp = true;
-}
-$dbhost = 'localhost';
-$dbname = 'forum_users';
-$dbuser = 'root';
-$dbpass = '';
-try {
-    $bdd = new PDO( 'mysql:host='.$dbhost.';dbname='.$dbname.'', $dbuser, $dbpass );
-} catch( Exception $e ) {
-    die( 'Erreur : ' . $e->getMessage() );
 }
 
 if (isConnect()) {

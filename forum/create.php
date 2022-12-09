@@ -1,5 +1,5 @@
 <?php
-session_start();
+include_once("./connection_bdd.php");
 $retour = '';
 $erreur = false;
 function secure_donnee($donnee){
@@ -11,16 +11,6 @@ function secure_donnee($donnee){
 }
 if (!isset($_POST)) {
     $erreur = true;
-}
-$dbhost = 'localhost';
-$dbname = 'forum_users';
-$dbuser = 'root';
-$dbpass = '';
-try {
-
-    $bdd = new PDO( 'mysql:host='.$dbhost.';dbname='.$dbname.'', $dbuser, $dbpass );
-} catch( Exception $e ) {
-    die( 'Erreur : ' . $e->getMessage() );
 }
 
 if(!$erreur){
@@ -53,7 +43,7 @@ if(!$erreur){
         $erreur = true;
         break;
     }
-
+    
     if ( !$erreur ) {
         //créer topic
         $requete = $bdd->prepare("INSERT INTO topic VALUES(NULL,:pseudo,:topic,NULL)");

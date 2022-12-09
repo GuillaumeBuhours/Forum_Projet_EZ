@@ -1,5 +1,5 @@
 <?php
-session_start();
+include_once("./connection_bdd.php");
 $retour = '';
 $erreur = false;
 function secure_donnee($donnee){
@@ -12,16 +12,7 @@ function secure_donnee($donnee){
 if (!isset($_POST)) {
     $erreur = true;
 }
-$dbhost = 'localhost';
-$dbname = 'forum_users';
-$dbuser = 'root';
-$dbpass = '';
-try {
 
-    $bdd = new PDO( 'mysql:host='.$dbhost.';dbname='.$dbname.'', $dbuser, $dbpass );
-} catch( Exception $e ) {
-    die( 'Erreur : ' . $e->getMessage() );
-}
 //test erreur
 if(!$erreur){
     if (isset($_POST['createMessage']) && $_POST['createMessage'] != '') {
@@ -61,7 +52,7 @@ if(!$erreur){
 if(!$erreur){
     $createMessage = htmlentities(secure_donnee($_POST['createMessage']));
     $topicAssocie = htmlentities(secure_donnee($_POST['topicAssocie']));
-    $requete = $bdd->prepare("INSERT INTO message VALUES(NULL,:pseudo,:msg,:topic,NULL)");
+    $requete = $bdd->prepare("INSERT INTO 'message' VALUES(NULL,:pseudo,:msg,:topic,NULL)");
     $requete->bindParam( ':pseudo',  $_SESSION['loginPostForm']);
     $requete->bindParam( ':msg',  $createMessage);
     $requete->bindParam( ':topic',  $topicAssocie);

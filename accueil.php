@@ -93,8 +93,7 @@ include_once("function.php")
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeCreateTopic()">X</span></div>
     <h2 style="text-align:center">-- creer un nouveau Topic --</h2>
     <form action="forum/create.php" method="post">
-    <input name="createTopic" id="createTopic" type="text" placeholder="Ajouter un titre">
-    <p name="msgTopic" class="pseudoTxtarea2" id="content" contenteditable>&nbsp;</p>
+    <input name="createTopic" class="create" type="text" placeholder="Ajouter un titre">
     <div style="text-align:center;"><input type="submit" id="creeTopic" value="Créer un nouveau Topic" class="pseudoBtn"></div>
     </form>
     </div>
@@ -112,12 +111,12 @@ include_once("function.php")
 <!-- fenêtre de création d'un nouveau Message -->
     <div class="modal" id="modal8">
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closeCreateMessage()">X</span></div>
-    <h2 style="text-align:center">-- creer un nouveau Message--</h2>
+    <h2 style="text-align:center">-- Ajouter un message--</h2>
     <form action="message/create.php" method="post">
-    <input name="createMessage" id="createMessage" type="text" placeholder="Ajouter un Message">
-    <input name="topicAssocie" id="topicAssocie" type="text" placeholder="Ajouter un topic associé">
+    <input type="hidden" id="topicAssocie" name="topicAssocie">
+    <p name="createMessage" class="pseudoTxtarea2" id="content" contenteditable>&nbsp;</p>
     <div style="text-align:center;">
-    <input type="submit" value="Créer un nouveau Message" class="pseudoBtn">
+    <input type="submit" value="Ajouter le Message" class="pseudoBtn">
     </div>
     </form>
     </div>
@@ -146,7 +145,7 @@ include_once("function.php")
 <!-- Table des Message -->
     <div style="margin-top:50px;">
     <?php if(isConnect()) { ?>
-    <div id="createTopic"><button class="pseudoBtn" id="createTopicBtn" onclick="openCreateMessage()">Créer un Message</button></div>
+    <div id="createTopic"><button class="pseudoBtn" id="createTopicBtn" onclick="openCreateMessage()">Ajouter un Message</button></div>
     <?php } ?>
     <table id="conteneur">
         <tr>
@@ -157,7 +156,14 @@ include_once("function.php")
             <td id="colone5">Supprimer Message</td>
         </tr>
     </table>
+    <div id="conteneur2" class="message" >
+
     </div>
+    </div>
+    <br><hr>
+    <footer style="text-align:center;color:red;font-weight: bold;" >
+        Forum EZ Créer par des GeekEZ
+    </footer>
     <script src="assets/index.js"></script>
 </body>
 </html>
