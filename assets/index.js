@@ -46,6 +46,9 @@ function closemodifTopic(){
 function closeCreateMessage() {
   document.getElementById("modal8").style.display = "none";
 }
+function openCreateMessage() {
+  document.getElementById("modal8").style.display = "flex";
+}
 function closemodifMessage(){
   document.getElementById("modal9").style.display = "none";
 }

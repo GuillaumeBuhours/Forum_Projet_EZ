@@ -144,7 +144,7 @@ include_once("function.php")
 <!-- Table des Message -->
     <div style="margin-top:50px;">
     <?php if(isConnect()) { ?>
-    <div id="createTopic"><button class="pseudoBtn" id="createTopicBtn" onclick="openCreateTopic()">Créer un Message</button></div>
+    <div id="createTopic"><button class="pseudoBtn" id="createTopicBtn" onclick="openCreateMessage()">Créer un Message</button></div>
     <?php } ?>
     <table id="conteneur">
         <tr>

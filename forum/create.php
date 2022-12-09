@@ -53,7 +53,7 @@ if(!$erreur){
         $erreur = true;
         break;
     }
-    
+
     if ( !$erreur ) {
         //créer topic
         $requete = $bdd->prepare("INSERT INTO topic VALUES(NULL,:pseudo,:topic,NULL)");
