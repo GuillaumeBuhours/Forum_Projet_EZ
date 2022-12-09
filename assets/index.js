@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //affiche tous les topics
     function EzTopicLigne(ezJson) {
         return '<tr id="'+ezJson.id+'">'+
-            '<td class="colone1"><div class="tdIcons"><img style="cursor:pointer;" src="./assets/edit.png" alt="edit" onclick=\'modifTopic('+ezJson.id+')\'></div></td>'+
+            '<td class="colone1"><div class="tdIcons"><img style="cursor:pointer;" src="./assets/edit.png" alt="edit" onclick=\'modifTopic('+ezJson.id+',"'+ezJson.topic+'")\'></div></td>'+
             '<td id="colone2" onclick=\'afficheMessage('+ezJson.topic+')\'">'+ezJson.topic+'</td>'+
             '<td id="colone3">'+ezJson.pseudo+'<span></td>'+
             '<td id="colone4">0</td>'+
@@ -125,9 +125,10 @@ function getRequest() {
     return xhr;
 }
 //ouvrir modal + stocker les valeurs de l'id et du contenu de la ligne
-function modifTopic(id){
+function modifTopic(id,topic){
     document.getElementById("modal7").style.display = "flex";
     document.getElementById("recuperationId").value=id;
+    document.getElementById("topicActuel").innerText += '  ' + topic;
 }
 //update topic
 function UpdateTopic(){

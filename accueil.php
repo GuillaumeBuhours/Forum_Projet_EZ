@@ -59,7 +59,7 @@ include_once("function.php")
     <h4>Pseudo: <?php echo $_SESSION['loginPostForm']?></h4><div class="tdIcons"><img src="./assets/edit.png" alt="edit" onclick="modifPseudo()"></div>
     </div>
     <div class="icon">
-    <h4>Mot de Passe: <?php echo $_SESSION['passwordPostForm']?></h4><div class="tdIcons"><img src="./assets/edit.png" alt="edit" onclick="modifMdp()"></div>
+    <h4>Mot de Passe: <?php echo $chaine ?></h4><div class="tdIcons"><img src="./assets/edit.png" alt="edit" onclick="modifMdp()"></div>
     </div>
     <div style="text-align:center;"><input name="btnDeleteAccount" type="submit" value="Supprimer son Compte" class="pseudoBtn"></div>
     </form>
@@ -102,6 +102,7 @@ include_once("function.php")
     <div class="modal" id="modal7">
     <div style="width:100%;text-align:right"><span class="closeBtn" onclick="closemodifTopic()">X</span></div>
     <h2 style="text-align:center">-- Update topic --</h2>
+    <h4 id="topicActuel">Nom du Topic Actuel : </h4>
     <form class="form" action="forum/update.php" method="post">
     <input type="hidden" id="recuperationId" name="id"/>
     <input class="pseudoTxtarea" type="text" placeholder="modifTopic" name="modifTopic" id="modifTopic">
@@ -152,7 +153,7 @@ include_once("function.php")
             <td id="colone1">Icone</td>
             <td id="colone2">Nom du Message</td>
             <td id="colone3">Créateur</td>
-            <td id="colone4">-</td>
+            <td id="colone4">Nom du Topic</td>
             <td id="colone5">Supprimer Message</td>
         </tr>
     </table>

@@ -39,7 +39,7 @@ if ( !$erreur ) {
         $retour .= "Veuillez renseigner le champ 'Référence recherchée'.<br />";
     }
 }
-
+$topic =  
 if ( !$erreur ) {
     $modifTopic = htmlentities( secure_donnee( $_POST[ 'modifTopic' ] ) );
     $sql = 'UPDATE topic SET topic = :topic WHERE pseudo = :pseudo AND id= :id';

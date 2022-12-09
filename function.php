@@ -82,4 +82,11 @@ if(!$erreur && isset($_POST['pseudo1'],$_POST['mdp1'])){
     }
     }
 
+
+    $nombre_caracteres = strlen($_SESSION['passwordPostForm']);
+    $chaine = '';
+    for($i = 1; $i <= $nombre_caracteres; $i ++)
+    {
+        $chaine .= '*';
+    }
 ?>

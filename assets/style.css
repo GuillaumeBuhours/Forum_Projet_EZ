@@ -130,6 +130,14 @@
     width: 150px;
     margin-top: 20px;
 }
+.pseudoBtn:hover{
+    background-color: black;
+    color: white;
+}
+#btnDeco:hover{
+    background-color: black;
+    color: white;
+}
 .form{
     gap: 10px;
     width: 100%;
